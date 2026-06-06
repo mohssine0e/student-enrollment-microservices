@@ -118,7 +118,7 @@ git push
 - [x] 4.9 Implement create course logic.
 - [x] 4.10 Implement list courses logic.
 - [x] 4.11 Implement get course by id logic.
-- [ ] 4.12 Implement update course logic.
+- [x] 4.12 Implement update course logic.
 - [ ] 4.13 Implement delete course logic.
 - [ ] 4.14 Create course controller.
 - [ ] 4.15 Add course validation rules.
