@@ -140,7 +140,7 @@ git push
 - [x] 5.8 Create `StudentDTO`.
 - [x] 5.9 Create `CourseDTO`.
 - [x] 5.10 Create `StudentDashboardDTO`.
-- [ ] 5.11 Create `DashboardCourseDTO`.
+- [x] 5.11 Create `DashboardCourseDTO`.
 - [ ] 5.12 Create enrollment mapper.
 - [ ] 5.13 Commit and push Enrollment Service foundation.
 
