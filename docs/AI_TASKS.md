@@ -134,7 +134,7 @@ git push
 - [x] 5.2 Configure `enrollment-service` database connection placeholders.
 - [x] 5.3 Create Enrollment entity.
 - [x] 5.4 Ensure Enrollment stores only enrollment id, student id, course id, and enrolled date/time.
-- [ ] 5.5 Create Enrollment repository.
+- [x] 5.5 Create Enrollment repository.
 - [ ] 5.6 Create `EnrollmentRequestDTO`.
 - [ ] 5.7 Create `EnrollmentResponseDTO`.
 - [ ] 5.8 Create `StudentDTO`.
