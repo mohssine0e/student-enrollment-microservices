@@ -1,0 +1,251 @@
+# AI Tasks - Microservices-Based Student Enrollment System
+
+This file is the single source of truth for project progress. Work must resume from the first unchecked task in this document.
+
+## Agent Workflow Rules
+
+- Before doing any work, read `docs/AI_TASKS.md`.
+- Find the first unchecked task.
+- Execute only that task and any directly related subtasks.
+- After finishing:
+  - mark the task as completed
+  - verify the task result
+  - commit changes
+  - push to GitHub
+- If interrupted, resume from the first unchecked task.
+- Do not skip unchecked tasks.
+- Do not start a later phase until all previous phase tasks are completed.
+- Keep implementation changes small and traceable to one checklist item.
+
+## Commit Strategy
+
+- Use small commits.
+- Make one logical change per commit.
+- Commit after each completed task.
+- Push after each commit.
+- Use imperative commit messages that include the task number.
+
+Example:
+
+```bash
+git add .
+git commit -m "complete task 1.3 configure student database"
+git push
+```
+
+## Phase 0 - Repository Preparation
+
+- [x] 0.1 Verify repository root.
+- [x] 0.2 Create `docs/` directory.
+- [x] 0.3 Create `docs/AI_TASKS.md`.
+- [x] 0.4 Create README template.
+- [x] 0.5 Create `.gitignore`.
+- [x] 0.6 Create placeholder `docker-compose.yml`.
+- [x] 0.7 Define agent workflow rules.
+- [x] 0.8 Define commit strategy.
+- [x] 0.9 Confirm no Spring Boot service code has been generated.
+
+## Phase 1 - Project Skeletons
+
+- [x] 1.1 Generate `student-service` Spring Boot project skeleton.
+- [ ] 1.2 Verify `student-service` starts with the default application class.
+- [ ] 1.3 Commit and push `student-service` skeleton.
+- [ ] 1.4 Generate `course-service` Spring Boot project skeleton.
+- [ ] 1.5 Verify `course-service` starts with the default application class.
+- [ ] 1.6 Commit and push `course-service` skeleton.
+- [ ] 1.7 Generate `enrollment-service` Spring Boot project skeleton.
+- [ ] 1.8 Verify `enrollment-service` starts with the default application class.
+- [ ] 1.9 Commit and push `enrollment-service` skeleton.
+- [ ] 1.10 Generate `api-gateway` Spring Boot project skeleton.
+- [ ] 1.11 Verify `api-gateway` starts with the default application class.
+- [ ] 1.12 Commit and push `api-gateway` skeleton.
+
+## Phase 2 - Shared Project Configuration
+
+- [ ] 2.1 Choose Java version.
+- [ ] 2.2 Choose Spring Boot version.
+- [ ] 2.3 Confirm Maven build configuration for all services.
+- [ ] 2.4 Add validation dependency to `student-service`.
+- [ ] 2.5 Add validation dependency to `course-service`.
+- [ ] 2.6 Add validation dependency to `enrollment-service`.
+- [ ] 2.7 Add Spring Data JPA dependency to `student-service`.
+- [ ] 2.8 Add Spring Data JPA dependency to `course-service`.
+- [ ] 2.9 Add Spring Data JPA dependency to `enrollment-service`.
+- [ ] 2.10 Add database driver dependency to `student-service`.
+- [ ] 2.11 Add database driver dependency to `course-service`.
+- [ ] 2.12 Add database driver dependency to `enrollment-service`.
+- [ ] 2.13 Add WebFlux dependency to `enrollment-service` for WebClient.
+- [ ] 2.14 Add Spring Cloud Gateway dependency to `api-gateway`.
+- [ ] 2.15 Verify all Maven builds.
+- [ ] 2.16 Commit and push shared configuration.
+
+## Phase 3 - Student Service
+
+- [ ] 3.1 Configure `student-service` port `8081`.
+- [ ] 3.2 Configure `student-service` database connection placeholders.
+- [ ] 3.3 Create Student entity.
+- [ ] 3.4 Add unique constraint for student CNIE.
+- [ ] 3.5 Create Student repository.
+- [ ] 3.6 Create student request DTO.
+- [ ] 3.7 Create student response DTO.
+- [ ] 3.8 Create student mapper.
+- [ ] 3.9 Create student service interface.
+- [ ] 3.10 Implement create student logic.
+- [ ] 3.11 Implement list students logic.
+- [ ] 3.12 Implement get student by id logic.
+- [ ] 3.13 Implement get student by CNIE logic.
+- [ ] 3.14 Implement update student logic.
+- [ ] 3.15 Implement delete student logic.
+- [ ] 3.16 Create student controller.
+- [ ] 3.17 Add student validation rules.
+- [ ] 3.18 Add student not found exception.
+- [ ] 3.19 Add duplicate CNIE exception.
+- [ ] 3.20 Add global exception handler.
+- [ ] 3.21 Add Swagger/OpenAPI configuration.
+- [ ] 3.22 Verify student API endpoints.
+- [ ] 3.23 Commit and push Student Service.
+
+## Phase 4 - Course Service
+
+- [ ] 4.1 Configure `course-service` port `8082`.
+- [ ] 4.2 Configure `course-service` database connection placeholders.
+- [ ] 4.3 Create Course entity.
+- [ ] 4.4 Create Course repository.
+- [ ] 4.5 Create course request DTO.
+- [ ] 4.6 Create course response DTO.
+- [ ] 4.7 Create course mapper.
+- [ ] 4.8 Create course service interface.
+- [ ] 4.9 Implement create course logic.
+- [ ] 4.10 Implement list courses logic.
+- [ ] 4.11 Implement get course by id logic.
+- [ ] 4.12 Implement update course logic.
+- [ ] 4.13 Implement delete course logic.
+- [ ] 4.14 Create course controller.
+- [ ] 4.15 Add course validation rules.
+- [ ] 4.16 Add course not found exception.
+- [ ] 4.17 Add global exception handler.
+- [ ] 4.18 Add Swagger/OpenAPI configuration.
+- [ ] 4.19 Verify course API endpoints.
+- [ ] 4.20 Commit and push Course Service.
+
+## Phase 5 - Enrollment Service Foundation
+
+- [ ] 5.1 Configure `enrollment-service` port `8083`.
+- [ ] 5.2 Configure `enrollment-service` database connection placeholders.
+- [ ] 5.3 Create Enrollment entity.
+- [ ] 5.4 Ensure Enrollment stores only enrollment id, student id, course id, and enrolled date/time.
+- [ ] 5.5 Create Enrollment repository.
+- [ ] 5.6 Create `EnrollmentRequestDTO`.
+- [ ] 5.7 Create `EnrollmentResponseDTO`.
+- [ ] 5.8 Create `StudentDTO`.
+- [ ] 5.9 Create `CourseDTO`.
+- [ ] 5.10 Create `StudentDashboardDTO`.
+- [ ] 5.11 Create `DashboardCourseDTO`.
+- [ ] 5.12 Create enrollment mapper.
+- [ ] 5.13 Commit and push Enrollment Service foundation.
+
+## Phase 6 - Enrollment Service Integration
+
+- [ ] 6.1 Configure WebClient bean.
+- [ ] 6.2 Configure Student Service base URL placeholder.
+- [ ] 6.3 Configure Course Service base URL placeholder.
+- [ ] 6.4 Implement WebClient call to find student by CNIE.
+- [ ] 6.5 Implement WebClient call to find course by id.
+- [ ] 6.6 Handle Student Service unavailable response.
+- [ ] 6.7 Handle Course Service unavailable response.
+- [ ] 6.8 Verify WebClient integration with mocked or running services.
+- [ ] 6.9 Commit and push Enrollment Service integration.
+
+## Phase 7 - Enrollment Business Rules
+
+- [ ] 7.1 Implement course enrollment count query.
+- [ ] 7.2 Enforce maximum 3 students per course.
+- [ ] 7.3 Add course full exception.
+- [ ] 7.4 Implement enrollment creation by CNIE.
+- [ ] 7.5 Prevent enrollment when student does not exist.
+- [ ] 7.6 Prevent enrollment when course does not exist.
+- [ ] 7.7 Implement enrollment deletion lookup.
+- [ ] 7.8 Enforce 24-hour cancellation rule.
+- [ ] 7.9 Add cancellation period expired exception.
+- [ ] 7.10 Add enrollment not found exception.
+- [ ] 7.11 Add global exception handler.
+- [ ] 7.12 Verify enrollment business rules.
+- [ ] 7.13 Commit and push Enrollment business rules.
+
+## Phase 8 - Dashboard
+
+- [ ] 8.1 Implement repository query for enrollments by student id.
+- [ ] 8.2 Implement dashboard lookup by CNIE.
+- [ ] 8.3 Fetch dashboard course details using WebClient.
+- [ ] 8.4 Compute `canCancel` from enrolled date/time.
+- [ ] 8.5 Create dashboard response mapping.
+- [ ] 8.6 Create dashboard endpoint.
+- [ ] 8.7 Verify dashboard response content.
+- [ ] 8.8 Commit and push Dashboard feature.
+
+## Phase 9 - API Gateway
+
+- [ ] 9.1 Configure gateway port `8080`.
+- [ ] 9.2 Configure route `/students/**` to `student-service`.
+- [ ] 9.3 Configure route `/courses/**` to `course-service`.
+- [ ] 9.4 Configure route `/enrollments/**` to `enrollment-service`.
+- [ ] 9.5 Verify student route through gateway.
+- [ ] 9.6 Verify course route through gateway.
+- [ ] 9.7 Verify enrollment route through gateway.
+- [ ] 9.8 Commit and push API Gateway.
+
+## Phase 10 - Swagger And API Documentation
+
+- [ ] 10.1 Add Swagger/OpenAPI dependency to `student-service`.
+- [ ] 10.2 Add Swagger/OpenAPI dependency to `course-service`.
+- [ ] 10.3 Add Swagger/OpenAPI dependency to `enrollment-service`.
+- [ ] 10.4 Document Student Service endpoints.
+- [ ] 10.5 Document Course Service endpoints.
+- [ ] 10.6 Document Enrollment Service endpoints.
+- [ ] 10.7 Verify Swagger UI for Student Service.
+- [ ] 10.8 Verify Swagger UI for Course Service.
+- [ ] 10.9 Verify Swagger UI for Enrollment Service.
+- [ ] 10.10 Commit and push Swagger documentation.
+
+## Phase 11 - Docker Setup
+
+- [ ] 11.1 Choose database engine for local development.
+- [ ] 11.2 Define Student Service database container.
+- [ ] 11.3 Define Course Service database container.
+- [ ] 11.4 Define Enrollment Service database container.
+- [ ] 11.5 Define Docker network.
+- [ ] 11.6 Define named volumes.
+- [ ] 11.7 Add environment variable placeholders.
+- [ ] 11.8 Add service container placeholders.
+- [ ] 11.9 Verify `docker compose config`.
+- [ ] 11.10 Commit and push Docker setup.
+
+## Phase 12 - End-To-End Verification
+
+- [ ] 12.1 Start databases.
+- [ ] 12.2 Start Student Service.
+- [ ] 12.3 Start Course Service.
+- [ ] 12.4 Start Enrollment Service.
+- [ ] 12.5 Start API Gateway.
+- [ ] 12.6 Create test student.
+- [ ] 12.7 Create test course.
+- [ ] 12.8 Enroll student by CNIE.
+- [ ] 12.9 Verify maximum 3 students per course.
+- [ ] 12.10 Verify dashboard by CNIE.
+- [ ] 12.11 Verify 24-hour cancellation rule.
+- [ ] 12.12 Verify gateway routes.
+- [ ] 12.13 Commit and push verification updates.
+
+## Phase 13 - README Completion
+
+- [ ] 13.1 Update project overview with final implementation details.
+- [ ] 13.2 Add final architecture diagram.
+- [ ] 13.3 Add final service descriptions.
+- [ ] 13.4 Add final database names.
+- [ ] 13.5 Add final port table.
+- [ ] 13.6 Add final technology versions.
+- [ ] 13.7 Add final running instructions.
+- [ ] 13.8 Add final API documentation links.
+- [ ] 13.9 Add known limitations.
+- [ ] 13.10 Add future improvements.
+- [ ] 13.11 Commit and push README completion.
