@@ -138,7 +138,7 @@ git push
 - [x] 5.6 Create `EnrollmentRequestDTO`.
 - [x] 5.7 Create `EnrollmentResponseDTO`.
 - [x] 5.8 Create `StudentDTO`.
-- [ ] 5.9 Create `CourseDTO`.
+- [x] 5.9 Create `CourseDTO`.
 - [ ] 5.10 Create `StudentDashboardDTO`.
 - [ ] 5.11 Create `DashboardCourseDTO`.
 - [ ] 5.12 Create enrollment mapper.
