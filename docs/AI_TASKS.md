@@ -154,7 +154,7 @@ git push
 - [x] 6.6 Handle Student Service unavailable response.
 - [x] 6.7 Handle Course Service unavailable response.
 - [x] 6.8 Verify WebClient integration with mocked or running services.
-- [ ] 6.9 Commit and push Enrollment Service integration.
+- [x] 6.9 Commit and push Enrollment Service integration.
 
 ## Phase 7 - Enrollment Business Rules
 
