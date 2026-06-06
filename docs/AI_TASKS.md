@@ -142,7 +142,7 @@ git push
 - [x] 5.10 Create `StudentDashboardDTO`.
 - [x] 5.11 Create `DashboardCourseDTO`.
 - [x] 5.12 Create enrollment mapper.
-- [ ] 5.13 Commit and push Enrollment Service foundation.
+- [x] 5.13 Commit and push Enrollment Service foundation.
 
 ## Phase 6 - Enrollment Service Integration
 
