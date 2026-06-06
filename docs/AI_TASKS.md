@@ -89,7 +89,7 @@ git push
 - [x] 3.6 Create student request DTO.
 - [x] 3.7 Create student response DTO.
 - [x] 3.8 Create student mapper.
-- [ ] 3.9 Create student service interface.
+- [x] 3.9 Create student service interface.
 - [ ] 3.10 Implement create student logic.
 - [ ] 3.11 Implement list students logic.
 - [ ] 3.12 Implement get student by id logic.
