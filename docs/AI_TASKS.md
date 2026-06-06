@@ -76,7 +76,7 @@ git push
 - [x] 2.12 Add database driver dependency to `enrollment-service`.
 - [x] 2.13 Add WebFlux dependency to `enrollment-service` for WebClient.
 - [x] 2.14 Add Spring Cloud Gateway dependency to `api-gateway`.
-- [ ] 2.15 Verify all Maven builds.
+- [x] 2.15 Verify all Maven builds.
 - [ ] 2.16 Commit and push shared configuration.
 
 ## Phase 3 - Student Service
