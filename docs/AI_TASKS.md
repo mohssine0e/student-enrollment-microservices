@@ -102,7 +102,7 @@ git push
 - [x] 3.19 Add duplicate CNIE exception.
 - [x] 3.20 Add global exception handler.
 - [x] 3.21 Add Swagger/OpenAPI configuration.
-- [ ] 3.22 Verify student API endpoints.
+- [x] 3.22 Verify student API endpoints.
 - [ ] 3.23 Commit and push Student Service.
 
 ## Phase 4 - Course Service
