@@ -66,7 +66,7 @@ git push
 - [x] 2.2 Choose Spring Boot version.
 - [x] 2.3 Confirm Maven build configuration for all services.
 - [x] 2.4 Add validation dependency to `student-service`.
-- [ ] 2.5 Add validation dependency to `course-service`.
+- [x] 2.5 Add validation dependency to `course-service`.
 - [ ] 2.6 Add validation dependency to `enrollment-service`.
 - [ ] 2.7 Add Spring Data JPA dependency to `student-service`.
 - [ ] 2.8 Add Spring Data JPA dependency to `course-service`.
