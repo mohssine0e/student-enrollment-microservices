@@ -3,6 +3,7 @@ package com.example.studentservice.controller;
 import com.example.studentservice.dto.StudentRequestDTO;
 import com.example.studentservice.dto.StudentResponseDTO;
 import com.example.studentservice.service.StudentService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentResponseDTO> createStudent(@RequestBody StudentRequestDTO request) {
+    public ResponseEntity<StudentResponseDTO> createStudent(@Valid @RequestBody StudentRequestDTO request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(studentService.createStudent(request));
     }
 
@@ -48,7 +49,7 @@ public class StudentController {
     @PutMapping("/{id}")
     public ResponseEntity<StudentResponseDTO> updateStudent(
             @PathVariable Long id,
-            @RequestBody StudentRequestDTO request
+            @Valid @RequestBody StudentRequestDTO request
     ) {
         return ResponseEntity.ok(studentService.updateStudent(id, request));
     }
