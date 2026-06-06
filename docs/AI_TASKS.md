@@ -71,7 +71,7 @@ git push
 - [x] 2.7 Add Spring Data JPA dependency to `student-service`.
 - [x] 2.8 Add Spring Data JPA dependency to `course-service`.
 - [x] 2.9 Add Spring Data JPA dependency to `enrollment-service`.
-- [ ] 2.10 Add database driver dependency to `student-service`.
+- [x] 2.10 Add database driver dependency to `student-service`.
 - [ ] 2.11 Add database driver dependency to `course-service`.
 - [ ] 2.12 Add database driver dependency to `enrollment-service`.
 - [ ] 2.13 Add WebFlux dependency to `enrollment-service` for WebClient.
