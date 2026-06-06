@@ -117,7 +117,7 @@ git push
 - [x] 4.8 Create course service interface.
 - [x] 4.9 Implement create course logic.
 - [x] 4.10 Implement list courses logic.
-- [ ] 4.11 Implement get course by id logic.
+- [x] 4.11 Implement get course by id logic.
 - [ ] 4.12 Implement update course logic.
 - [ ] 4.13 Implement delete course logic.
 - [ ] 4.14 Create course controller.
