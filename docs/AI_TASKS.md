@@ -81,7 +81,7 @@ git push
 
 ## Phase 3 - Student Service
 
-- [ ] 3.1 Configure `student-service` port `8081`.
+- [x] 3.1 Configure `student-service` port `8081`.
 - [ ] 3.2 Configure `student-service` database connection placeholders.
 - [ ] 3.3 Create Student entity.
 - [ ] 3.4 Add unique constraint for student CNIE.
