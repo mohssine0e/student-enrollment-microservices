@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.example.enrollmentservice.exception.CourseFullException;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,7 +35,7 @@ class EnrollmentServiceImplTest {
         when(enrollmentRepository.countByCourseId(20L)).thenReturn(3L);
 
         assertThatThrownBy(() -> enrollmentService.ensureCourseHasCapacity(20L))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(CourseFullException.class)
                 .hasMessage("Course has reached the maximum number of enrollments");
     }
 }

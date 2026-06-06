@@ -1,5 +1,6 @@
 package com.example.enrollmentservice.service.impl;
 
+import com.example.enrollmentservice.exception.CourseFullException;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import com.example.enrollmentservice.service.EnrollmentService;
 import org.springframework.stereotype.Service;
@@ -22,7 +23,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     public void ensureCourseHasCapacity(Long courseId) {
         long enrollmentCount = enrollmentRepository.countByCourseId(courseId);
         if (enrollmentCount >= MAX_ENROLLMENTS_PER_COURSE) {
-            throw new IllegalStateException("Course has reached the maximum number of enrollments");
+            throw new CourseFullException("Course has reached the maximum number of enrollments");
         }
     }
 }

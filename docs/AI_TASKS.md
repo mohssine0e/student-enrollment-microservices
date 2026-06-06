@@ -160,7 +160,7 @@ git push
 
 - [x] 7.1 Implement course enrollment count query.
 - [x] 7.2 Enforce maximum 3 students per course.
-- [ ] 7.3 Add course full exception.
+- [x] 7.3 Add course full exception.
 - [ ] 7.4 Implement enrollment creation by CNIE.
 - [ ] 7.5 Prevent enrollment when student does not exist.
 - [ ] 7.6 Prevent enrollment when course does not exist.
