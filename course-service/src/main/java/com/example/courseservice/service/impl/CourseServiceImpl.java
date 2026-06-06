@@ -3,11 +3,11 @@ package com.example.courseservice.service.impl;
 import com.example.courseservice.dto.CourseRequestDTO;
 import com.example.courseservice.dto.CourseResponseDTO;
 import com.example.courseservice.entity.Course;
+import com.example.courseservice.exception.CourseNotFoundException;
 import com.example.courseservice.mapper.CourseMapper;
 import com.example.courseservice.repository.CourseRepository;
 import com.example.courseservice.service.CourseService;
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -59,6 +59,6 @@ public class CourseServiceImpl implements CourseService {
 
     private Course findCourseById(Long id) {
         return courseRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Course not found with id: " + id));
+                .orElseThrow(() -> new CourseNotFoundException("Course not found with id: " + id));
     }
 }
