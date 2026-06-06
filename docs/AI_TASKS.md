@@ -110,7 +110,7 @@ git push
 - [x] 4.1 Configure `course-service` port `8082`.
 - [x] 4.2 Configure `course-service` database connection placeholders.
 - [x] 4.3 Create Course entity.
-- [ ] 4.4 Create Course repository.
+- [x] 4.4 Create Course repository.
 - [ ] 4.5 Create course request DTO.
 - [ ] 4.6 Create course response DTO.
 - [ ] 4.7 Create course mapper.
