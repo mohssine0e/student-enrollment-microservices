@@ -15,7 +15,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 32)
     private String cnie;
 
     @Column(nullable = false)
