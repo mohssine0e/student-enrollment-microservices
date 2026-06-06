@@ -86,7 +86,7 @@ git push
 - [x] 3.3 Create Student entity.
 - [x] 3.4 Add unique constraint for student CNIE.
 - [x] 3.5 Create Student repository.
-- [ ] 3.6 Create student request DTO.
+- [x] 3.6 Create student request DTO.
 - [ ] 3.7 Create student response DTO.
 - [ ] 3.8 Create student mapper.
 - [ ] 3.9 Create student service interface.
