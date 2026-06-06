@@ -1,8 +1,10 @@
 package com.example.enrollmentservice.client;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.enrollmentservice.dto.CourseDTO;
+import com.example.enrollmentservice.exception.CourseServiceUnavailableException;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -36,6 +38,11 @@ class CourseClientTest {
                 body.write(response);
             }
         });
+        server.createContext("/courses/999", exchange -> {
+            requestedPath = exchange.getRequestURI().getPath();
+            exchange.sendResponseHeaders(503, -1);
+            exchange.close();
+        });
         server.start();
     }
 
@@ -54,6 +61,16 @@ class CourseClientTest {
         assertThat(course.id()).isEqualTo(20L);
         assertThat(course.title()).isEqualTo("Distributed Systems");
         assertThat(course.description()).isEqualTo("Microservices course");
+    }
+
+    @Test
+    void findByIdThrowsWhenCourseServiceReturnsServerError() {
+        CourseClient client = new CourseClient(WebClient.builder(), baseUrl());
+
+        assertThatThrownBy(() -> client.findById(999L))
+                .isInstanceOf(CourseServiceUnavailableException.class)
+                .hasMessage("Course Service is unavailable");
+        assertThat(requestedPath).isEqualTo("/courses/999");
     }
 
     private String baseUrl() {

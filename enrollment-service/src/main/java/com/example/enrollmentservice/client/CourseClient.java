@@ -1,9 +1,13 @@
 package com.example.enrollmentservice.client;
 
 import com.example.enrollmentservice.dto.CourseDTO;
+import com.example.enrollmentservice.exception.CourseServiceUnavailableException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientRequestException;
+import reactor.core.publisher.Mono;
 
 @Service
 public class CourseClient {
@@ -20,10 +24,16 @@ public class CourseClient {
     }
 
     public CourseDTO findById(Long courseId) {
-        return webClient.get()
-                .uri("/courses/{id}", courseId)
-                .retrieve()
-                .bodyToMono(CourseDTO.class)
-                .block();
+        try {
+            return webClient.get()
+                    .uri("/courses/{id}", courseId)
+                    .retrieve()
+                    .onStatus(HttpStatusCode::is5xxServerError, response -> response.releaseBody()
+                            .then(Mono.error(new CourseServiceUnavailableException("Course Service is unavailable"))))
+                    .bodyToMono(CourseDTO.class)
+                    .block();
+        } catch (WebClientRequestException exception) {
+            throw new CourseServiceUnavailableException("Course Service is unavailable", exception);
+        }
     }
 }
