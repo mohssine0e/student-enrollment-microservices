@@ -48,7 +48,7 @@ git push
 ## Phase 1 - Project Skeletons
 
 - [x] 1.1 Generate `student-service` Spring Boot project skeleton.
-- [ ] 1.2 Verify `student-service` starts with the default application class.
+- [x] 1.2 Verify `student-service` starts with the default application class.
 - [ ] 1.3 Commit and push `student-service` skeleton.
 - [ ] 1.4 Generate `course-service` Spring Boot project skeleton.
 - [ ] 1.5 Verify `course-service` starts with the default application class.
