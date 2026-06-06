@@ -121,7 +121,7 @@ git push
 - [x] 4.12 Implement update course logic.
 - [x] 4.13 Implement delete course logic.
 - [x] 4.14 Create course controller.
-- [ ] 4.15 Add course validation rules.
+- [x] 4.15 Add course validation rules.
 - [ ] 4.16 Add course not found exception.
 - [ ] 4.17 Add global exception handler.
 - [ ] 4.18 Add Swagger/OpenAPI configuration.

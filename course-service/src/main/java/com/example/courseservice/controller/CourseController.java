@@ -3,6 +3,7 @@ package com.example.courseservice.controller;
 import com.example.courseservice.dto.CourseRequestDTO;
 import com.example.courseservice.dto.CourseResponseDTO;
 import com.example.courseservice.service.CourseService;
+import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +27,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public ResponseEntity<CourseResponseDTO> createCourse(@RequestBody CourseRequestDTO request) {
+    public ResponseEntity<CourseResponseDTO> createCourse(@Valid @RequestBody CourseRequestDTO request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(courseService.createCourse(request));
     }
 
@@ -43,7 +44,7 @@ public class CourseController {
     @PutMapping("/{id}")
     public ResponseEntity<CourseResponseDTO> updateCourse(
             @PathVariable Long id,
-            @RequestBody CourseRequestDTO request
+            @Valid @RequestBody CourseRequestDTO request
     ) {
         return ResponseEntity.ok(courseService.updateCourse(id, request));
     }
