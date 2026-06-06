@@ -150,7 +150,7 @@ git push
 - [x] 6.2 Configure Student Service base URL placeholder.
 - [x] 6.3 Configure Course Service base URL placeholder.
 - [x] 6.4 Implement WebClient call to find student by CNIE.
-- [ ] 6.5 Implement WebClient call to find course by id.
+- [x] 6.5 Implement WebClient call to find course by id.
 - [ ] 6.6 Handle Student Service unavailable response.
 - [ ] 6.7 Handle Course Service unavailable response.
 - [ ] 6.8 Verify WebClient integration with mocked or running services.
