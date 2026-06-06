@@ -123,7 +123,7 @@ git push
 - [x] 4.14 Create course controller.
 - [x] 4.15 Add course validation rules.
 - [x] 4.16 Add course not found exception.
-- [ ] 4.17 Add global exception handler.
+- [x] 4.17 Add global exception handler.
 - [ ] 4.18 Add Swagger/OpenAPI configuration.
 - [ ] 4.19 Verify course API endpoints.
 - [ ] 4.20 Commit and push Course Service.
