@@ -133,7 +133,7 @@ git push
 - [x] 5.1 Configure `enrollment-service` port `8083`.
 - [x] 5.2 Configure `enrollment-service` database connection placeholders.
 - [x] 5.3 Create Enrollment entity.
-- [ ] 5.4 Ensure Enrollment stores only enrollment id, student id, course id, and enrolled date/time.
+- [x] 5.4 Ensure Enrollment stores only enrollment id, student id, course id, and enrolled date/time.
 - [ ] 5.5 Create Enrollment repository.
 - [ ] 5.6 Create `EnrollmentRequestDTO`.
 - [ ] 5.7 Create `EnrollmentResponseDTO`.
