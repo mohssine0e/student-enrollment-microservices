@@ -107,7 +107,7 @@ git push
 
 ## Phase 4 - Course Service
 
-- [ ] 4.1 Configure `course-service` port `8082`.
+- [x] 4.1 Configure `course-service` port `8082`.
 - [ ] 4.2 Configure `course-service` database connection placeholders.
 - [ ] 4.3 Create Course entity.
 - [ ] 4.4 Create Course repository.
