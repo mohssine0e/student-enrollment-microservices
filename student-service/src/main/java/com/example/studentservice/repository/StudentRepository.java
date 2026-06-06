@@ -9,4 +9,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     Optional<Student> findByCnie(String cnie);
 
     boolean existsByCnie(String cnie);
+
+    boolean existsByCnieAndIdNot(String cnie, Long id);
 }

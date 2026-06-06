@@ -3,6 +3,7 @@ package com.example.studentservice.service.impl;
 import com.example.studentservice.dto.StudentRequestDTO;
 import com.example.studentservice.dto.StudentResponseDTO;
 import com.example.studentservice.entity.Student;
+import com.example.studentservice.exception.DuplicateCnieException;
 import com.example.studentservice.exception.StudentNotFoundException;
 import com.example.studentservice.mapper.StudentMapper;
 import com.example.studentservice.repository.StudentRepository;
@@ -24,7 +25,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentResponseDTO createStudent(StudentRequestDTO request) {
         if (studentRepository.existsByCnie(request.cnie())) {
-            throw new IllegalArgumentException("Student CNIE already exists: " + request.cnie());
+            throw new DuplicateCnieException("Student CNIE already exists: " + request.cnie());
         }
 
         Student student = StudentMapper.toEntity(request);
@@ -58,6 +59,9 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public StudentResponseDTO updateStudent(Long id, StudentRequestDTO request) {
         Student student = findStudentById(id);
+        if (studentRepository.existsByCnieAndIdNot(request.cnie(), id)) {
+            throw new DuplicateCnieException("Student CNIE already exists: " + request.cnie());
+        }
         StudentMapper.updateEntity(student, request);
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.toResponse(savedStudent);
