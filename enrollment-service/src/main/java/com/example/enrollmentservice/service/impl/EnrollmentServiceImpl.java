@@ -1,6 +1,14 @@
 package com.example.enrollmentservice.service.impl;
 
+import com.example.enrollmentservice.client.CourseServiceClient;
+import com.example.enrollmentservice.client.StudentServiceClient;
+import com.example.enrollmentservice.dto.CourseDTO;
+import com.example.enrollmentservice.dto.EnrollmentRequestDTO;
+import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
+import com.example.enrollmentservice.dto.StudentDTO;
+import com.example.enrollmentservice.entity.Enrollment;
 import com.example.enrollmentservice.exception.CourseFullException;
+import com.example.enrollmentservice.mapper.EnrollmentMapper;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import com.example.enrollmentservice.service.EnrollmentService;
 import org.springframework.stereotype.Service;
@@ -13,9 +21,28 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private static final int MAX_ENROLLMENTS_PER_COURSE = 3;
 
     private final EnrollmentRepository enrollmentRepository;
+    private final StudentServiceClient studentClient;
+    private final CourseServiceClient courseClient;
 
-    public EnrollmentServiceImpl(EnrollmentRepository enrollmentRepository) {
+    public EnrollmentServiceImpl(
+            EnrollmentRepository enrollmentRepository,
+            StudentServiceClient studentClient,
+            CourseServiceClient courseClient
+    ) {
         this.enrollmentRepository = enrollmentRepository;
+        this.studentClient = studentClient;
+        this.courseClient = courseClient;
+    }
+
+    @Override
+    public EnrollmentResponseDTO createEnrollment(EnrollmentRequestDTO request) {
+        StudentDTO student = studentClient.findByCnie(request.cnie());
+        CourseDTO course = courseClient.findById(request.courseId());
+        ensureCourseHasCapacity(course.id());
+
+        Enrollment enrollment = EnrollmentMapper.toEntity(student.id(), course.id());
+        Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
+        return EnrollmentMapper.toResponse(savedEnrollment);
     }
 
     @Override

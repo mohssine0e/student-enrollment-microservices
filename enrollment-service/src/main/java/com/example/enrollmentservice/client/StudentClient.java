@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClientRequestExceptio
 import reactor.core.publisher.Mono;
 
 @Service
-public class StudentClient {
+public class StudentClient implements StudentServiceClient {
 
     private final WebClient webClient;
 
@@ -23,6 +23,7 @@ public class StudentClient {
                 .build();
     }
 
+    @Override
     public StudentDTO findByCnie(String cnie) {
         try {
             return webClient.get()
