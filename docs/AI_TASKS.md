@@ -95,7 +95,7 @@ git push
 - [x] 3.12 Implement get student by id logic.
 - [x] 3.13 Implement get student by CNIE logic.
 - [x] 3.14 Implement update student logic.
-- [ ] 3.15 Implement delete student logic.
+- [x] 3.15 Implement delete student logic.
 - [ ] 3.16 Create student controller.
 - [ ] 3.17 Add student validation rules.
 - [ ] 3.18 Add student not found exception.
