@@ -98,7 +98,7 @@ git push
 - [x] 3.15 Implement delete student logic.
 - [x] 3.16 Create student controller.
 - [x] 3.17 Add student validation rules.
-- [ ] 3.18 Add student not found exception.
+- [x] 3.18 Add student not found exception.
 - [ ] 3.19 Add duplicate CNIE exception.
 - [ ] 3.20 Add global exception handler.
 - [ ] 3.21 Add Swagger/OpenAPI configuration.

@@ -3,11 +3,11 @@ package com.example.studentservice.service.impl;
 import com.example.studentservice.dto.StudentRequestDTO;
 import com.example.studentservice.dto.StudentResponseDTO;
 import com.example.studentservice.entity.Student;
+import com.example.studentservice.exception.StudentNotFoundException;
 import com.example.studentservice.mapper.StudentMapper;
 import com.example.studentservice.repository.StudentRepository;
 import com.example.studentservice.service.StudentService;
 import java.util.List;
-import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,7 +51,7 @@ public class StudentServiceImpl implements StudentService {
     @Transactional(readOnly = true)
     public StudentResponseDTO getStudentByCnie(String cnie) {
         Student student = studentRepository.findByCnie(cnie)
-                .orElseThrow(() -> new NoSuchElementException("Student not found with CNIE: " + cnie));
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with CNIE: " + cnie));
         return StudentMapper.toResponse(student);
     }
 
@@ -71,6 +71,6 @@ public class StudentServiceImpl implements StudentService {
 
     private Student findStudentById(Long id) {
         return studentRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Student not found with id: " + id));
+                .orElseThrow(() -> new StudentNotFoundException("Student not found with id: " + id));
     }
 }
