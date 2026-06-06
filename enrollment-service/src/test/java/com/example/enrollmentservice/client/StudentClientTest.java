@@ -1,8 +1,10 @@
 package com.example.enrollmentservice.client;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.enrollmentservice.dto.StudentDTO;
+import com.example.enrollmentservice.exception.StudentServiceUnavailableException;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -38,6 +40,11 @@ class StudentClientTest {
                 body.write(response);
             }
         });
+        server.createContext("/students/cnie/SERVICE_DOWN", exchange -> {
+            requestedPath = exchange.getRequestURI().getPath();
+            exchange.sendResponseHeaders(503, -1);
+            exchange.close();
+        });
         server.start();
     }
 
@@ -58,6 +65,16 @@ class StudentClientTest {
         assertThat(student.firstName()).isEqualTo("Sara");
         assertThat(student.lastName()).isEqualTo("Amrani");
         assertThat(student.email()).isEqualTo("sara@example.com");
+    }
+
+    @Test
+    void findByCnieThrowsWhenStudentServiceReturnsServerError() {
+        StudentClient client = new StudentClient(WebClient.builder(), baseUrl());
+
+        assertThatThrownBy(() -> client.findByCnie("SERVICE_DOWN"))
+                .isInstanceOf(StudentServiceUnavailableException.class)
+                .hasMessage("Student Service is unavailable");
+        assertThat(requestedPath).isEqualTo("/students/cnie/SERVICE_DOWN");
     }
 
     private String baseUrl() {
