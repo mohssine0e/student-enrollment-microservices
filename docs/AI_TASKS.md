@@ -112,7 +112,7 @@ git push
 - [x] 4.3 Create Course entity.
 - [x] 4.4 Create Course repository.
 - [x] 4.5 Create course request DTO.
-- [ ] 4.6 Create course response DTO.
+- [x] 4.6 Create course response DTO.
 - [ ] 4.7 Create course mapper.
 - [ ] 4.8 Create course service interface.
 - [ ] 4.9 Implement create course logic.
