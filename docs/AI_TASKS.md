@@ -159,7 +159,7 @@ git push
 ## Phase 7 - Enrollment Business Rules
 
 - [x] 7.1 Implement course enrollment count query.
-- [ ] 7.2 Enforce maximum 3 students per course.
+- [x] 7.2 Enforce maximum 3 students per course.
 - [ ] 7.3 Add course full exception.
 - [ ] 7.4 Implement enrollment creation by CNIE.
 - [ ] 7.5 Prevent enrollment when student does not exist.
