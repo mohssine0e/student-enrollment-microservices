@@ -115,7 +115,7 @@ git push
 - [x] 4.6 Create course response DTO.
 - [x] 4.7 Create course mapper.
 - [x] 4.8 Create course service interface.
-- [ ] 4.9 Implement create course logic.
+- [x] 4.9 Implement create course logic.
 - [ ] 4.10 Implement list courses logic.
 - [ ] 4.11 Implement get course by id logic.
 - [ ] 4.12 Implement update course logic.
