@@ -56,7 +56,7 @@ git push
 - [x] 1.7 Generate `enrollment-service` Spring Boot project skeleton.
 - [x] 1.8 Verify `enrollment-service` starts with the default application class.
 - [x] 1.9 Commit and push `enrollment-service` skeleton.
-- [ ] 1.10 Generate `api-gateway` Spring Boot project skeleton.
+- [x] 1.10 Generate `api-gateway` Spring Boot project skeleton.
 - [ ] 1.11 Verify `api-gateway` starts with the default application class.
 - [ ] 1.12 Commit and push `api-gateway` skeleton.
 
