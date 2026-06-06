@@ -147,7 +147,7 @@ git push
 ## Phase 6 - Enrollment Service Integration
 
 - [x] 6.1 Configure WebClient bean.
-- [ ] 6.2 Configure Student Service base URL placeholder.
+- [x] 6.2 Configure Student Service base URL placeholder.
 - [ ] 6.3 Configure Course Service base URL placeholder.
 - [ ] 6.4 Implement WebClient call to find student by CNIE.
 - [ ] 6.5 Implement WebClient call to find course by id.
