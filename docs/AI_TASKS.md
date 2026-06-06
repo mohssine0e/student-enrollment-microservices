@@ -131,7 +131,7 @@ git push
 ## Phase 5 - Enrollment Service Foundation
 
 - [x] 5.1 Configure `enrollment-service` port `8083`.
-- [ ] 5.2 Configure `enrollment-service` database connection placeholders.
+- [x] 5.2 Configure `enrollment-service` database connection placeholders.
 - [ ] 5.3 Create Enrollment entity.
 - [ ] 5.4 Ensure Enrollment stores only enrollment id, student id, course id, and enrolled date/time.
 - [ ] 5.5 Create Enrollment repository.
