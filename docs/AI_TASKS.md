@@ -92,7 +92,7 @@ git push
 - [x] 3.9 Create student service interface.
 - [x] 3.10 Implement create student logic.
 - [x] 3.11 Implement list students logic.
-- [ ] 3.12 Implement get student by id logic.
+- [x] 3.12 Implement get student by id logic.
 - [ ] 3.13 Implement get student by CNIE logic.
 - [ ] 3.14 Implement update student logic.
 - [ ] 3.15 Implement delete student logic.
