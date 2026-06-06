@@ -136,7 +136,7 @@ git push
 - [x] 5.4 Ensure Enrollment stores only enrollment id, student id, course id, and enrolled date/time.
 - [x] 5.5 Create Enrollment repository.
 - [x] 5.6 Create `EnrollmentRequestDTO`.
-- [ ] 5.7 Create `EnrollmentResponseDTO`.
+- [x] 5.7 Create `EnrollmentResponseDTO`.
 - [ ] 5.8 Create `StudentDTO`.
 - [ ] 5.9 Create `CourseDTO`.
 - [ ] 5.10 Create `StudentDashboardDTO`.
