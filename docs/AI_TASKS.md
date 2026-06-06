@@ -125,7 +125,7 @@ git push
 - [x] 4.16 Add course not found exception.
 - [x] 4.17 Add global exception handler.
 - [x] 4.18 Add Swagger/OpenAPI configuration.
-- [ ] 4.19 Verify course API endpoints.
+- [x] 4.19 Verify course API endpoints.
 - [ ] 4.20 Commit and push Course Service.
 
 ## Phase 5 - Enrollment Service Foundation
