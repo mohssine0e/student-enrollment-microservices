@@ -58,7 +58,7 @@ git push
 - [x] 1.9 Commit and push `enrollment-service` skeleton.
 - [x] 1.10 Generate `api-gateway` Spring Boot project skeleton.
 - [x] 1.11 Verify `api-gateway` starts with the default application class.
-- [ ] 1.12 Commit and push `api-gateway` skeleton.
+- [x] 1.12 Commit and push `api-gateway` skeleton.
 
 ## Phase 2 - Shared Project Configuration
 
