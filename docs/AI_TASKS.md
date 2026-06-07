@@ -262,4 +262,4 @@ Local database engine: MySQL 8.4 LTS.
 - [x] 14.6 Complete frontend implementation and documentation.
 - [x] 14.7 Update final README instructions and summary.
 - [x] 14.8 Verify full project startup workflow.
-- [ ] 14.9 Commit and push post-backend additions.
+- [x] 14.9 Commit and push post-backend additions.
