@@ -168,7 +168,7 @@ git push
 - [x] 7.8 Enforce 24-hour cancellation rule.
 - [x] 7.9 Add cancellation period expired exception.
 - [x] 7.10 Add enrollment not found exception.
-- [ ] 7.11 Add global exception handler.
+- [x] 7.11 Add global exception handler.
 - [ ] 7.12 Verify enrollment business rules.
 - [ ] 7.13 Commit and push Enrollment business rules.
 
