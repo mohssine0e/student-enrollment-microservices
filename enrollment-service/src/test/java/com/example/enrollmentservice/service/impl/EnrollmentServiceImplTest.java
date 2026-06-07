@@ -178,11 +178,15 @@ class EnrollmentServiceImplTest {
     void getDashboardByCnieLooksUpStudentAndStudentEnrollments() {
         Enrollment enrollment = new Enrollment(10L, 20L);
         enrollment.setEnrolledAt(LocalDateTime.of(2026, 6, 6, 10, 30));
+        Enrollment oldEnrollment = new Enrollment(10L, 30L);
+        oldEnrollment.setEnrolledAt(LocalDateTime.of(2026, 6, 5, 11, 59));
         when(studentClient.findByCnie("AA123456"))
                 .thenReturn(new StudentDTO(10L, "AA123456", "Sara", "Amrani", "sara@example.com"));
-        when(enrollmentRepository.findByStudentId(10L)).thenReturn(List.of(enrollment));
+        when(enrollmentRepository.findByStudentId(10L)).thenReturn(List.of(enrollment, oldEnrollment));
         when(courseClient.findById(20L))
                 .thenReturn(new CourseDTO(20L, "Distributed Systems", "Microservices course"));
+        when(courseClient.findById(30L))
+                .thenReturn(new CourseDTO(30L, "Databases", "Database course"));
 
         StudentDashboardDTO dashboard = enrollmentService.getDashboardByCnie("AA123456");
 
@@ -190,11 +194,15 @@ class EnrollmentServiceImplTest {
         assertThat(dashboard.cnie()).isEqualTo("AA123456");
         assertThat(dashboard.firstName()).isEqualTo("Sara");
         assertThat(dashboard.lastName()).isEqualTo("Amrani");
-        assertThat(dashboard.courses()).hasSize(1);
+        assertThat(dashboard.courses()).hasSize(2);
         assertThat(dashboard.courses().getFirst().courseId()).isEqualTo(20L);
         assertThat(dashboard.courses().getFirst().courseTitle()).isEqualTo("Distributed Systems");
+        assertThat(dashboard.courses().getFirst().canCancel()).isTrue();
+        assertThat(dashboard.courses().get(1).courseId()).isEqualTo(30L);
+        assertThat(dashboard.courses().get(1).canCancel()).isFalse();
         verify(studentClient).findByCnie("AA123456");
         verify(enrollmentRepository).findByStudentId(10L);
         verify(courseClient).findById(20L);
+        verify(courseClient).findById(30L);
     }
 }

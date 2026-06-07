@@ -73,7 +73,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
                 .stream()
                 .map(enrollment -> {
                     CourseDTO course = courseClient.findById(enrollment.getCourseId());
-                    return EnrollmentMapper.toDashboardCourse(enrollment, course, false);
+                    return EnrollmentMapper.toDashboardCourse(enrollment, course, canCancel(enrollment));
                 })
                 .toList();
         return EnrollmentMapper.toDashboard(student, courses);
@@ -93,5 +93,9 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     public Enrollment findEnrollmentForDeletion(Long enrollmentId) {
         return enrollmentRepository.findById(enrollmentId)
                 .orElseThrow(() -> new EnrollmentNotFoundException("Enrollment not found with id: " + enrollmentId));
+    }
+
+    private boolean canCancel(Enrollment enrollment) {
+        return !LocalDateTime.now(clock).isAfter(enrollment.getEnrolledAt().plusHours(24));
     }
 }
