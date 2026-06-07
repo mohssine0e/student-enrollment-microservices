@@ -200,7 +200,7 @@ git push
 - [x] 10.2 Add Swagger/OpenAPI dependency to `course-service`.
 - [x] 10.3 Add Swagger/OpenAPI dependency to `enrollment-service`.
 - [x] 10.4 Document Student Service endpoints.
-- [ ] 10.5 Document Course Service endpoints.
+- [x] 10.5 Document Course Service endpoints.
 - [ ] 10.6 Document Enrollment Service endpoints.
 - [ ] 10.7 Verify Swagger UI for Student Service.
 - [ ] 10.8 Verify Swagger UI for Course Service.
