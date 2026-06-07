@@ -54,3 +54,15 @@ Each data-owning service uses its own MySQL database.
 | `enrollment-service` | `enrollment_db` | `3309` | Stores only `id`, `studentId`, `courseId`, and `enrolledAt`. |
 
 Local credentials are placeholders in `.env.example`; production credentials should not be committed.
+
+## Ports
+
+| Component | Port | Status |
+| --- | --- | --- |
+| API Gateway | `8080` | HTTP entry point |
+| Student Service | `8081` | Spring Boot service |
+| Course Service | `8082` | Spring Boot service |
+| Enrollment Service | `8083` | Spring Boot service |
+| Student Database | `3307` host -> `3306` container | MySQL |
+| Course Database | `3308` host -> `3306` container | MySQL |
+| Enrollment Database | `3309` host -> `3306` container | MySQL |
