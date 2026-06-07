@@ -4,6 +4,7 @@ import com.example.enrollmentservice.dto.EnrollmentRequestDTO;
 import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
 import com.example.enrollmentservice.dto.StudentDashboardDTO;
 import com.example.enrollmentservice.service.EnrollmentService;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,18 +27,21 @@ public class EnrollmentController {
     }
 
     @PostMapping
+    @Operation(summary = "Create enrollment", description = "Enrolls a student in a course using CNIE and course id.")
     public ResponseEntity<EnrollmentResponseDTO> createEnrollment(@Valid @RequestBody EnrollmentRequestDTO request) {
         EnrollmentResponseDTO response = enrollmentService.createEnrollment(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Cancel enrollment", description = "Cancels an enrollment when it is still within the 24-hour cancellation window.")
     public ResponseEntity<Void> cancelEnrollment(@PathVariable Long id) {
         enrollmentService.cancelEnrollment(id);
         return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/dashboard/{cnie}")
+    @Operation(summary = "Get student dashboard", description = "Returns a student's enrolled courses with course titles and cancellation availability.")
     public StudentDashboardDTO getDashboard(@PathVariable String cnie) {
         return enrollmentService.getDashboardByCnie(cnie);
     }
