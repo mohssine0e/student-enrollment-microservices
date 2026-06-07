@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Layout } from './components/Layout'
+import { CourseListPage } from './pages/CourseListPage'
 import './App.css'
 
 const routes = [
-  { path: 'courses', label: 'Courses', title: 'Course Listing' },
+  { path: 'courses', label: 'Courses', title: 'Course Listing', component: CourseListPage },
   { path: 'enroll', label: 'Enroll', title: 'Student Enrollment' },
   { path: 'dashboard', label: 'Dashboard', title: 'Student Dashboard' },
 ]
@@ -31,12 +32,17 @@ function App() {
     () => routes.find((route) => route.path === activeRoute) ?? routes[0],
     [activeRoute],
   )
+  const Page = currentRoute.component
 
   return (
     <Layout routes={routes} activeRoute={activeRoute} title={currentRoute.title}>
-      <p className="text-slate-600">
-        {currentRoute.title} page content will be implemented in the next frontend tasks.
-      </p>
+      {Page ? (
+        <Page />
+      ) : (
+        <p className="text-slate-600">
+          {currentRoute.title} page content will be implemented in the next frontend tasks.
+        </p>
+      )}
     </Layout>
   )
 }
