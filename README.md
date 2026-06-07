@@ -139,6 +139,20 @@ OpenAPI JSON:
 - Course Service: `http://localhost:8082/v3/api-docs`
 - Enrollment Service: `http://localhost:8083/v3/api-docs`
 
+## Development Workflow
+
+Development progress is tracked in [`docs/AI_TASKS.md`](docs/AI_TASKS.md).
+
+Before starting work:
+
+1. Read `docs/AI_TASKS.md`.
+2. Find the first unchecked task.
+3. Complete only that task and directly related subtasks.
+4. Verify the result.
+5. Mark the task complete.
+6. Commit and push the change.
+
+If work is interrupted, resume from the first unchecked task.
 
 ## Known Limitations
 
