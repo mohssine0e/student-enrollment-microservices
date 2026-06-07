@@ -17,8 +17,8 @@ stop_process() {
   local pid
   pid="$(cat "$pid_file")"
   if kill -0 "$pid" >/dev/null 2>&1; then
-    echo "Stopping $name with PID $pid"
-    kill "$pid" >/dev/null 2>&1 || true
+    echo "Stopping $name process group with leader PID $pid"
+    kill -- "-$pid" >/dev/null 2>&1 || kill "$pid" >/dev/null 2>&1 || true
     for _ in $(seq 1 20); do
       if ! kill -0 "$pid" >/dev/null 2>&1; then
         break
@@ -27,7 +27,7 @@ stop_process() {
     done
     if kill -0 "$pid" >/dev/null 2>&1; then
       echo "Force stopping $name"
-      kill -9 "$pid" >/dev/null 2>&1 || true
+      kill -9 -- "-$pid" >/dev/null 2>&1 || kill -9 "$pid" >/dev/null 2>&1 || true
     fi
   else
     echo "$name process is not running"

@@ -79,7 +79,7 @@ start_process() {
   echo "Starting $name. Logs: $log_file"
   (
     cd "$ROOT_DIR"
-    nohup bash -lc "$command" >"$log_file" 2>&1 &
+    nohup setsid bash -lc "exec $command" >"$log_file" 2>&1 &
     echo $! >"$pid_file"
   )
 }
@@ -96,19 +96,19 @@ wait_for_mysql course-db "${COURSE_DB_ROOT_PASSWORD:-root_password}"
 wait_for_mysql enrollment-db "${ENROLLMENT_DB_ROOT_PASSWORD:-root_password}"
 
 start_process "student-service" \
-  "STUDENT_DB_URL=jdbc:mysql://localhost:${STUDENT_DB_PORT:-3307}/${STUDENT_DB_NAME:-student_db} STUDENT_DB_USERNAME=${STUDENT_DB_USERNAME:-student_user} STUDENT_DB_PASSWORD=${STUDENT_DB_PASSWORD:-student_password} STUDENT_JPA_DDL_AUTO=${STUDENT_JPA_DDL_AUTO:-update} mvn -f student-service/pom.xml spring-boot:run"
+  "env STUDENT_DB_URL=jdbc:mysql://localhost:${STUDENT_DB_PORT:-3307}/${STUDENT_DB_NAME:-student_db} STUDENT_DB_USERNAME=${STUDENT_DB_USERNAME:-student_user} STUDENT_DB_PASSWORD=${STUDENT_DB_PASSWORD:-student_password} STUDENT_JPA_DDL_AUTO=${STUDENT_JPA_DDL_AUTO:-update} mvn -f student-service/pom.xml spring-boot:run"
 wait_for_url "Student Service" "http://localhost:${STUDENT_SERVICE_PORT:-8081}/v3/api-docs"
 
 start_process "course-service" \
-  "COURSE_DB_URL=jdbc:mysql://localhost:${COURSE_DB_PORT:-3308}/${COURSE_DB_NAME:-course_db} COURSE_DB_USERNAME=${COURSE_DB_USERNAME:-course_user} COURSE_DB_PASSWORD=${COURSE_DB_PASSWORD:-course_password} COURSE_JPA_DDL_AUTO=${COURSE_JPA_DDL_AUTO:-update} mvn -f course-service/pom.xml spring-boot:run"
+  "env COURSE_DB_URL=jdbc:mysql://localhost:${COURSE_DB_PORT:-3308}/${COURSE_DB_NAME:-course_db} COURSE_DB_USERNAME=${COURSE_DB_USERNAME:-course_user} COURSE_DB_PASSWORD=${COURSE_DB_PASSWORD:-course_password} COURSE_JPA_DDL_AUTO=${COURSE_JPA_DDL_AUTO:-update} mvn -f course-service/pom.xml spring-boot:run"
 wait_for_url "Course Service" "http://localhost:${COURSE_SERVICE_PORT:-8082}/v3/api-docs"
 
 start_process "enrollment-service" \
-  "ENROLLMENT_DB_URL=jdbc:mysql://localhost:${ENROLLMENT_DB_PORT:-3309}/${ENROLLMENT_DB_NAME:-enrollment_db} ENROLLMENT_DB_USERNAME=${ENROLLMENT_DB_USERNAME:-enrollment_user} ENROLLMENT_DB_PASSWORD=${ENROLLMENT_DB_PASSWORD:-enrollment_password} ENROLLMENT_JPA_DDL_AUTO=${ENROLLMENT_JPA_DDL_AUTO:-update} STUDENT_SERVICE_BASE_URL=http://localhost:${STUDENT_SERVICE_PORT:-8081} COURSE_SERVICE_BASE_URL=http://localhost:${COURSE_SERVICE_PORT:-8082} mvn -f enrollment-service/pom.xml spring-boot:run"
+  "env ENROLLMENT_DB_URL=jdbc:mysql://localhost:${ENROLLMENT_DB_PORT:-3309}/${ENROLLMENT_DB_NAME:-enrollment_db} ENROLLMENT_DB_USERNAME=${ENROLLMENT_DB_USERNAME:-enrollment_user} ENROLLMENT_DB_PASSWORD=${ENROLLMENT_DB_PASSWORD:-enrollment_password} ENROLLMENT_JPA_DDL_AUTO=${ENROLLMENT_JPA_DDL_AUTO:-update} STUDENT_SERVICE_BASE_URL=http://localhost:${STUDENT_SERVICE_PORT:-8081} COURSE_SERVICE_BASE_URL=http://localhost:${COURSE_SERVICE_PORT:-8082} mvn -f enrollment-service/pom.xml spring-boot:run"
 wait_for_url "Enrollment Service" "http://localhost:${ENROLLMENT_SERVICE_PORT:-8083}/v3/api-docs"
 
 start_process "api-gateway" \
-  "STUDENT_SERVICE_URL=http://localhost:${STUDENT_SERVICE_PORT:-8081} COURSE_SERVICE_URL=http://localhost:${COURSE_SERVICE_PORT:-8082} ENROLLMENT_SERVICE_URL=http://localhost:${ENROLLMENT_SERVICE_PORT:-8083} mvn -f api-gateway/pom.xml spring-boot:run"
+  "env STUDENT_SERVICE_URL=http://localhost:${STUDENT_SERVICE_PORT:-8081} COURSE_SERVICE_URL=http://localhost:${COURSE_SERVICE_PORT:-8082} ENROLLMENT_SERVICE_URL=http://localhost:${ENROLLMENT_SERVICE_PORT:-8083} mvn -f api-gateway/pom.xml spring-boot:run"
 wait_for_url "API Gateway" "http://localhost:${API_GATEWAY_PORT:-8080}/students"
 
 if [[ -f "$ROOT_DIR/frontend/package.json" ]]; then
@@ -118,8 +118,10 @@ if [[ -f "$ROOT_DIR/frontend/package.json" ]]; then
     npm --prefix "$ROOT_DIR/frontend" install
   fi
   start_process "frontend" \
-    "VITE_API_BASE_URL=http://localhost:${API_GATEWAY_PORT:-8080} npm --prefix frontend run dev -- --host 0.0.0.0"
+    "env VITE_API_BASE_URL=http://localhost:${API_GATEWAY_PORT:-8080} npm --prefix frontend run dev -- --host 0.0.0.0 --port ${FRONTEND_PORT:-5173} --strictPort"
   wait_for_url "Frontend" "http://localhost:${FRONTEND_PORT:-5173}" 30
+  sleep 2
+  wait_for_url "Frontend stability check" "http://localhost:${FRONTEND_PORT:-5173}" 3
 else
   echo "No frontend/package.json found. Skipping frontend startup."
 fi
