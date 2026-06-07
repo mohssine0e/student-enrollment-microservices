@@ -174,7 +174,7 @@ git push
 
 ## Phase 8 - Dashboard
 
-- [ ] 8.1 Implement repository query for enrollments by student id.
+- [x] 8.1 Implement repository query for enrollments by student id.
 - [ ] 8.2 Implement dashboard lookup by CNIE.
 - [ ] 8.3 Fetch dashboard course details using WebClient.
 - [ ] 8.4 Compute `canCancel` from enrolled date/time.
