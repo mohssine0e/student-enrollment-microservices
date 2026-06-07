@@ -8,6 +8,8 @@ public interface EnrollmentService {
 
     EnrollmentResponseDTO createEnrollment(EnrollmentRequestDTO request);
 
+    void cancelEnrollment(Long enrollmentId);
+
     void ensureCourseHasCapacity(Long courseId);
 
     Enrollment findEnrollmentForDeletion(Long enrollmentId);

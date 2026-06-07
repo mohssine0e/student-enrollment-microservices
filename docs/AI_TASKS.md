@@ -165,7 +165,7 @@ git push
 - [x] 7.5 Prevent enrollment when student does not exist.
 - [x] 7.6 Prevent enrollment when course does not exist.
 - [x] 7.7 Implement enrollment deletion lookup.
-- [ ] 7.8 Enforce 24-hour cancellation rule.
+- [x] 7.8 Enforce 24-hour cancellation rule.
 - [ ] 7.9 Add cancellation period expired exception.
 - [ ] 7.10 Add enrollment not found exception.
 - [ ] 7.11 Add global exception handler.

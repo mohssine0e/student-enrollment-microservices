@@ -11,6 +11,8 @@ import com.example.enrollmentservice.exception.CourseFullException;
 import com.example.enrollmentservice.mapper.EnrollmentMapper;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import com.example.enrollmentservice.service.EnrollmentService;
+import java.time.Clock;
+import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,15 +25,18 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
     private final StudentServiceClient studentClient;
     private final CourseServiceClient courseClient;
+    private final Clock clock;
 
     public EnrollmentServiceImpl(
             EnrollmentRepository enrollmentRepository,
             StudentServiceClient studentClient,
-            CourseServiceClient courseClient
+            CourseServiceClient courseClient,
+            Clock clock
     ) {
         this.enrollmentRepository = enrollmentRepository;
         this.studentClient = studentClient;
         this.courseClient = courseClient;
+        this.clock = clock;
     }
 
     @Override
@@ -43,6 +48,16 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         Enrollment enrollment = EnrollmentMapper.toEntity(student.id(), course.id());
         Enrollment savedEnrollment = enrollmentRepository.save(enrollment);
         return EnrollmentMapper.toResponse(savedEnrollment);
+    }
+
+    @Override
+    public void cancelEnrollment(Long enrollmentId) {
+        Enrollment enrollment = findEnrollmentForDeletion(enrollmentId);
+        LocalDateTime cancellationDeadline = enrollment.getEnrolledAt().plusHours(24);
+        if (LocalDateTime.now(clock).isAfter(cancellationDeadline)) {
+            throw new IllegalStateException("Enrollment cancellation period has expired");
+        }
+        enrollmentRepository.delete(enrollment);
     }
 
     @Override

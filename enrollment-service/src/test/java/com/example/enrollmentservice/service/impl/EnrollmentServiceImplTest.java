@@ -18,12 +18,14 @@ import com.example.enrollmentservice.exception.CourseFullException;
 import com.example.enrollmentservice.exception.CourseNotFoundException;
 import com.example.enrollmentservice.exception.StudentNotFoundException;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
+import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Optional;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -39,8 +41,16 @@ class EnrollmentServiceImplTest {
     @Mock
     private CourseServiceClient courseClient;
 
-    @InjectMocks
     private EnrollmentServiceImpl enrollmentService;
+
+    @BeforeEach
+    void setUp() {
+        Clock fixedClock = Clock.fixed(
+                LocalDateTime.of(2026, 6, 6, 12, 0).toInstant(ZoneOffset.UTC),
+                ZoneOffset.UTC
+        );
+        enrollmentService = new EnrollmentServiceImpl(enrollmentRepository, studentClient, courseClient, fixedClock);
+    }
 
     @Test
     void ensureCourseHasCapacityAllowsCourseWithFewerThanThreeEnrollments() {
@@ -135,5 +145,28 @@ class EnrollmentServiceImplTest {
         assertThatThrownBy(() -> enrollmentService.findEnrollmentForDeletion(1L))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Enrollment not found with id: 1");
+    }
+
+    @Test
+    void cancelEnrollmentDeletesEnrollmentWithinTwentyFourHours() {
+        Enrollment enrollment = new Enrollment(10L, 20L);
+        enrollment.setEnrolledAt(LocalDateTime.of(2026, 6, 5, 13, 0));
+        when(enrollmentRepository.findById(1L)).thenReturn(Optional.of(enrollment));
+
+        enrollmentService.cancelEnrollment(1L);
+
+        verify(enrollmentRepository).delete(enrollment);
+    }
+
+    @Test
+    void cancelEnrollmentRejectsEnrollmentAfterTwentyFourHours() {
+        Enrollment enrollment = new Enrollment(10L, 20L);
+        enrollment.setEnrolledAt(LocalDateTime.of(2026, 6, 5, 11, 59));
+        when(enrollmentRepository.findById(1L)).thenReturn(Optional.of(enrollment));
+
+        assertThatThrownBy(() -> enrollmentService.cancelEnrollment(1L))
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessage("Enrollment cancellation period has expired");
+        verify(enrollmentRepository, never()).delete(any());
     }
 }
