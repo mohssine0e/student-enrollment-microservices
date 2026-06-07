@@ -45,6 +45,6 @@ This file is the frontend source of truth. If frontend work is interrupted, resu
 
 - [x] 4.1 Verify frontend build.
 - [x] 4.2 Verify frontend dev server starts.
-- [ ] 4.3 Create `docs/FRONTEND_EXPLANATION.md`.
+- [x] 4.3 Create `docs/FRONTEND_EXPLANATION.md`.
 - [ ] 4.4 Update README frontend instructions.
 - [ ] 4.5 Commit and push frontend completion.
