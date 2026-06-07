@@ -233,7 +233,7 @@ Local database engine: MySQL 8.4 LTS.
 - [x] 12.7 Create test course.
 - [x] 12.8 Enroll student by CNIE.
 - [x] 12.9 Verify maximum 3 students per course.
-- [ ] 12.10 Verify dashboard by CNIE.
+- [x] 12.10 Verify dashboard by CNIE.
 - [ ] 12.11 Verify 24-hour cancellation rule.
 - [ ] 12.12 Verify gateway routes.
 - [ ] 12.13 Commit and push verification updates.
