@@ -6,6 +6,7 @@ import com.example.enrollmentservice.dto.CourseDTO;
 import com.example.enrollmentservice.dto.EnrollmentRequestDTO;
 import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
 import com.example.enrollmentservice.dto.StudentDTO;
+import com.example.enrollmentservice.dto.StudentDashboardDTO;
 import com.example.enrollmentservice.entity.Enrollment;
 import com.example.enrollmentservice.exception.CancellationPeriodExpiredException;
 import com.example.enrollmentservice.exception.CourseFullException;
@@ -15,6 +16,7 @@ import com.example.enrollmentservice.repository.EnrollmentRepository;
 import com.example.enrollmentservice.service.EnrollmentService;
 import java.time.Clock;
 import java.time.LocalDateTime;
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,6 +62,14 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             throw new CancellationPeriodExpiredException("Enrollment cancellation period has expired");
         }
         enrollmentRepository.delete(enrollment);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public StudentDashboardDTO getDashboardByCnie(String cnie) {
+        StudentDTO student = studentClient.findByCnie(cnie);
+        enrollmentRepository.findByStudentId(student.id());
+        return EnrollmentMapper.toDashboard(student, List.of());
     }
 
     @Override

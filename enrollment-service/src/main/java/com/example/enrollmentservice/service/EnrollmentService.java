@@ -2,6 +2,7 @@ package com.example.enrollmentservice.service;
 
 import com.example.enrollmentservice.dto.EnrollmentRequestDTO;
 import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
+import com.example.enrollmentservice.dto.StudentDashboardDTO;
 import com.example.enrollmentservice.entity.Enrollment;
 
 public interface EnrollmentService {
@@ -9,6 +10,8 @@ public interface EnrollmentService {
     EnrollmentResponseDTO createEnrollment(EnrollmentRequestDTO request);
 
     void cancelEnrollment(Long enrollmentId);
+
+    StudentDashboardDTO getDashboardByCnie(String cnie);
 
     void ensureCourseHasCapacity(Long courseId);
 

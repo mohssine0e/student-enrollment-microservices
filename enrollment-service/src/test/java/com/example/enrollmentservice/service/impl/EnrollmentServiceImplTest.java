@@ -13,6 +13,7 @@ import com.example.enrollmentservice.dto.CourseDTO;
 import com.example.enrollmentservice.dto.EnrollmentRequestDTO;
 import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
 import com.example.enrollmentservice.dto.StudentDTO;
+import com.example.enrollmentservice.dto.StudentDashboardDTO;
 import com.example.enrollmentservice.entity.Enrollment;
 import com.example.enrollmentservice.exception.CancellationPeriodExpiredException;
 import com.example.enrollmentservice.exception.CourseFullException;
@@ -23,6 +24,7 @@ import com.example.enrollmentservice.repository.EnrollmentRepository;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -170,5 +172,24 @@ class EnrollmentServiceImplTest {
                 .isInstanceOf(CancellationPeriodExpiredException.class)
                 .hasMessage("Enrollment cancellation period has expired");
         verify(enrollmentRepository, never()).delete(any());
+    }
+
+    @Test
+    void getDashboardByCnieLooksUpStudentAndStudentEnrollments() {
+        Enrollment enrollment = new Enrollment(10L, 20L);
+        enrollment.setEnrolledAt(LocalDateTime.of(2026, 6, 6, 10, 30));
+        when(studentClient.findByCnie("AA123456"))
+                .thenReturn(new StudentDTO(10L, "AA123456", "Sara", "Amrani", "sara@example.com"));
+        when(enrollmentRepository.findByStudentId(10L)).thenReturn(List.of(enrollment));
+
+        StudentDashboardDTO dashboard = enrollmentService.getDashboardByCnie("AA123456");
+
+        assertThat(dashboard.studentId()).isEqualTo(10L);
+        assertThat(dashboard.cnie()).isEqualTo("AA123456");
+        assertThat(dashboard.firstName()).isEqualTo("Sara");
+        assertThat(dashboard.lastName()).isEqualTo("Amrani");
+        assertThat(dashboard.courses()).isEmpty();
+        verify(studentClient).findByCnie("AA123456");
+        verify(enrollmentRepository).findByStudentId(10L);
     }
 }
