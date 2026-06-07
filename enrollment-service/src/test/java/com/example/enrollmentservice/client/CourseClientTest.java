@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.enrollmentservice.dto.CourseDTO;
+import com.example.enrollmentservice.exception.CourseNotFoundException;
 import com.example.enrollmentservice.exception.CourseServiceUnavailableException;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
@@ -43,6 +44,11 @@ class CourseClientTest {
             exchange.sendResponseHeaders(503, -1);
             exchange.close();
         });
+        server.createContext("/courses/404", exchange -> {
+            requestedPath = exchange.getRequestURI().getPath();
+            exchange.sendResponseHeaders(404, -1);
+            exchange.close();
+        });
         server.start();
     }
 
@@ -71,6 +77,16 @@ class CourseClientTest {
                 .isInstanceOf(CourseServiceUnavailableException.class)
                 .hasMessage("Course Service is unavailable");
         assertThat(requestedPath).isEqualTo("/courses/999");
+    }
+
+    @Test
+    void findByIdThrowsWhenCourseDoesNotExist() {
+        CourseClient client = new CourseClient(WebClient.builder(), baseUrl());
+
+        assertThatThrownBy(() -> client.findById(404L))
+                .isInstanceOf(CourseNotFoundException.class)
+                .hasMessage("Course not found with id: 404");
+        assertThat(requestedPath).isEqualTo("/courses/404");
     }
 
     private String baseUrl() {

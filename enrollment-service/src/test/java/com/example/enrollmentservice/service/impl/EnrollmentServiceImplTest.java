@@ -15,6 +15,7 @@ import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
 import com.example.enrollmentservice.dto.StudentDTO;
 import com.example.enrollmentservice.entity.Enrollment;
 import com.example.enrollmentservice.exception.CourseFullException;
+import com.example.enrollmentservice.exception.CourseNotFoundException;
 import com.example.enrollmentservice.exception.StudentNotFoundException;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import java.time.LocalDateTime;
@@ -97,6 +98,21 @@ class EnrollmentServiceImplTest {
                 .isInstanceOf(StudentNotFoundException.class)
                 .hasMessage("Student not found with CNIE: MISSING");
         verify(courseClient, never()).findById(any());
+        verify(enrollmentRepository, never()).save(any());
+    }
+
+    @Test
+    void createEnrollmentStopsWhenCourseDoesNotExist() {
+        EnrollmentRequestDTO request = new EnrollmentRequestDTO("AA123456", 404L);
+        when(studentClient.findByCnie("AA123456"))
+                .thenReturn(new StudentDTO(10L, "AA123456", "Sara", "Amrani", "sara@example.com"));
+        when(courseClient.findById(404L))
+                .thenThrow(new CourseNotFoundException("Course not found with id: 404"));
+
+        assertThatThrownBy(() -> enrollmentService.createEnrollment(request))
+                .isInstanceOf(CourseNotFoundException.class)
+                .hasMessage("Course not found with id: 404");
+        verify(enrollmentRepository, never()).countByCourseId(any());
         verify(enrollmentRepository, never()).save(any());
     }
 }
