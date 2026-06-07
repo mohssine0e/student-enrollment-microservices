@@ -53,4 +53,11 @@ public class EnrollmentServiceImpl implements EnrollmentService {
             throw new CourseFullException("Course has reached the maximum number of enrollments");
         }
     }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Enrollment findEnrollmentForDeletion(Long enrollmentId) {
+        return enrollmentRepository.findById(enrollmentId)
+                .orElseThrow(() -> new IllegalArgumentException("Enrollment not found with id: " + enrollmentId));
+    }
 }

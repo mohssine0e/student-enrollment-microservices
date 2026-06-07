@@ -19,6 +19,7 @@ import com.example.enrollmentservice.exception.CourseNotFoundException;
 import com.example.enrollmentservice.exception.StudentNotFoundException;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -114,5 +115,25 @@ class EnrollmentServiceImplTest {
                 .hasMessage("Course not found with id: 404");
         verify(enrollmentRepository, never()).countByCourseId(any());
         verify(enrollmentRepository, never()).save(any());
+    }
+
+    @Test
+    void findEnrollmentForDeletionReturnsExistingEnrollment() {
+        Enrollment enrollment = new Enrollment(10L, 20L);
+        when(enrollmentRepository.findById(1L)).thenReturn(Optional.of(enrollment));
+
+        Enrollment foundEnrollment = enrollmentService.findEnrollmentForDeletion(1L);
+
+        assertThat(foundEnrollment).isSameAs(enrollment);
+        verify(enrollmentRepository).findById(1L);
+    }
+
+    @Test
+    void findEnrollmentForDeletionThrowsWhenEnrollmentDoesNotExist() {
+        when(enrollmentRepository.findById(1L)).thenReturn(Optional.empty());
+
+        assertThatThrownBy(() -> enrollmentService.findEnrollmentForDeletion(1L))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Enrollment not found with id: 1");
     }
 }
