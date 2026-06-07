@@ -3,6 +3,7 @@ package com.example.enrollmentservice.service.impl;
 import com.example.enrollmentservice.client.CourseServiceClient;
 import com.example.enrollmentservice.client.StudentServiceClient;
 import com.example.enrollmentservice.dto.CourseDTO;
+import com.example.enrollmentservice.dto.DashboardCourseDTO;
 import com.example.enrollmentservice.dto.EnrollmentRequestDTO;
 import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
 import com.example.enrollmentservice.dto.StudentDTO;
@@ -68,8 +69,14 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Transactional(readOnly = true)
     public StudentDashboardDTO getDashboardByCnie(String cnie) {
         StudentDTO student = studentClient.findByCnie(cnie);
-        enrollmentRepository.findByStudentId(student.id());
-        return EnrollmentMapper.toDashboard(student, List.of());
+        List<DashboardCourseDTO> courses = enrollmentRepository.findByStudentId(student.id())
+                .stream()
+                .map(enrollment -> {
+                    CourseDTO course = courseClient.findById(enrollment.getCourseId());
+                    return EnrollmentMapper.toDashboardCourse(enrollment, course, false);
+                })
+                .toList();
+        return EnrollmentMapper.toDashboard(student, courses);
     }
 
     @Override
