@@ -241,7 +241,7 @@ Local database engine: MySQL 8.4 LTS.
 ## Phase 13 - README Completion
 
 - [x] 13.1 Update project overview with final implementation details.
-- [ ] 13.2 Add final architecture diagram.
+- [x] 13.2 Add final architecture diagram.
 - [ ] 13.3 Add final service descriptions.
 - [ ] 13.4 Add final database names.
 - [ ] 13.5 Add final port table.
