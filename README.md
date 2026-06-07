@@ -125,3 +125,17 @@ mvn -f api-gateway/pom.xml spring-boot:run
 
 The Docker Compose file also contains build-context placeholders for service containers. Dockerfiles are not included in this project, so the verified workflow runs databases through Docker and services through Maven.
 
+## API Documentation
+
+Swagger/OpenAPI is enabled for the three backend services.
+
+- Student Service: `http://localhost:8081/swagger-ui/index.html`
+- Course Service: `http://localhost:8082/swagger-ui/index.html`
+- Enrollment Service: `http://localhost:8083/swagger-ui/index.html`
+
+OpenAPI JSON:
+
+- Student Service: `http://localhost:8081/v3/api-docs`
+- Course Service: `http://localhost:8082/v3/api-docs`
+- Enrollment Service: `http://localhost:8083/v3/api-docs`
+
