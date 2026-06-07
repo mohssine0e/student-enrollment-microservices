@@ -179,7 +179,7 @@ git push
 - [x] 8.3 Fetch dashboard course details using WebClient.
 - [x] 8.4 Compute `canCancel` from enrolled date/time.
 - [x] 8.5 Create dashboard response mapping.
-- [ ] 8.6 Create dashboard endpoint.
+- [x] 8.6 Create dashboard endpoint.
 - [ ] 8.7 Verify dashboard response content.
 - [ ] 8.8 Commit and push Dashboard feature.
 
