@@ -89,7 +89,13 @@ class EnrollmentControllerTest {
         mockMvc.perform(get("/enrollments/dashboard/AA123456"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.studentId").value(10))
+                .andExpect(jsonPath("$.cnie").value("AA123456"))
+                .andExpect(jsonPath("$.firstName").value("Sara"))
+                .andExpect(jsonPath("$.lastName").value("Amrani"))
+                .andExpect(jsonPath("$.courses[0].enrollmentId").value(1))
+                .andExpect(jsonPath("$.courses[0].courseId").value(20))
                 .andExpect(jsonPath("$.courses[0].courseTitle").value("Distributed Systems"))
+                .andExpect(jsonPath("$.courses[0].enrolledAt").exists())
                 .andExpect(jsonPath("$.courses[0].canCancel").value(true));
     }
 }
