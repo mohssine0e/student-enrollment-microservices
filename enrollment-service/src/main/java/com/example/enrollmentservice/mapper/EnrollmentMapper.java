@@ -7,6 +7,8 @@ import com.example.enrollmentservice.dto.StudentDTO;
 import com.example.enrollmentservice.dto.StudentDashboardDTO;
 import com.example.enrollmentservice.entity.Enrollment;
 import java.util.List;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public final class EnrollmentMapper {
 
@@ -44,5 +46,21 @@ public final class EnrollmentMapper {
                 student.lastName(),
                 List.copyOf(courses)
         );
+    }
+
+    public static StudentDashboardDTO toDashboard(
+            StudentDTO student,
+            List<Enrollment> enrollments,
+            Function<Long, CourseDTO> courseResolver,
+            Predicate<Enrollment> cancellationRule
+    ) {
+        List<DashboardCourseDTO> courses = enrollments.stream()
+                .map(enrollment -> toDashboardCourse(
+                        enrollment,
+                        courseResolver.apply(enrollment.getCourseId()),
+                        cancellationRule.test(enrollment)
+                ))
+                .toList();
+        return toDashboard(student, courses);
     }
 }

@@ -54,4 +54,24 @@ class EnrollmentMapperTest {
         assertThat(dashboard.cnie()).isEqualTo("AA123456");
         assertThat(dashboard.courses()).containsExactly(courseRow);
     }
+
+    @Test
+    void toDashboardMapsEnrollmentRowsWithResolvedCourseDetails() {
+        LocalDateTime enrolledAt = LocalDateTime.of(2026, 6, 6, 10, 30);
+        Enrollment enrollment = new Enrollment(10L, 20L);
+        enrollment.setEnrolledAt(enrolledAt);
+        StudentDTO student = new StudentDTO(10L, "AA123456", "Sara", "Amrani", "sara@example.com");
+
+        StudentDashboardDTO dashboard = EnrollmentMapper.toDashboard(
+                student,
+                List.of(enrollment),
+                courseId -> new CourseDTO(courseId, "Distributed Systems", "Microservices course"),
+                ignored -> true
+        );
+
+        assertThat(dashboard.courses()).hasSize(1);
+        assertThat(dashboard.courses().getFirst().courseId()).isEqualTo(20L);
+        assertThat(dashboard.courses().getFirst().courseTitle()).isEqualTo("Distributed Systems");
+        assertThat(dashboard.courses().getFirst().canCancel()).isTrue();
+    }
 }
