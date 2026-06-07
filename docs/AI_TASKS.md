@@ -226,7 +226,7 @@ Local database engine: MySQL 8.4 LTS.
 
 - [x] 12.1 Start databases.
 - [x] 12.2 Start Student Service.
-- [ ] 12.3 Start Course Service.
+- [x] 12.3 Start Course Service.
 - [ ] 12.4 Start Enrollment Service.
 - [ ] 12.5 Start API Gateway.
 - [ ] 12.6 Create test student.
