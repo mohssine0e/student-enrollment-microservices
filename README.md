@@ -139,3 +139,12 @@ OpenAPI JSON:
 - Course Service: `http://localhost:8082/v3/api-docs`
 - Enrollment Service: `http://localhost:8083/v3/api-docs`
 
+
+## Known Limitations
+
+- Service containers are defined as Docker Compose build-context placeholders, but Dockerfiles are not included.
+- There is no authentication or authorization layer.
+- Services use fixed URLs from environment variables; there is no service discovery.
+- Database schema creation is handled with Hibernate `ddl-auto=update` for local verification, not a migration tool.
+- Cross-service calls are synchronous WebClient requests without circuit breakers or retries.
+- End-to-end verification is manual and documented through `docs/AI_TASKS.md`, not automated as a CI pipeline.
