@@ -224,7 +224,7 @@ Local database engine: MySQL 8.4 LTS.
 
 ## Phase 12 - End-To-End Verification
 
-- [ ] 12.1 Start databases.
+- [x] 12.1 Start databases.
 - [ ] 12.2 Start Student Service.
 - [ ] 12.3 Start Course Service.
 - [ ] 12.4 Start Enrollment Service.
