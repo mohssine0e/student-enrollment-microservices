@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { cancelEnrollment, getDashboard } from '../api/client'
+import { Alert } from '../components/Alert'
+import { LoadingMessage } from '../components/LoadingMessage'
 
 export function DashboardPage() {
   const [cnie, setCnie] = useState('')
@@ -58,15 +60,12 @@ export function DashboardPage() {
       </form>
 
       {message && (
-        <div className="rounded-md border border-emerald-200 bg-emerald-50 p-4 text-emerald-700">
-          {message}
-        </div>
+        <Alert type="success">{message}</Alert>
       )}
       {error && (
-        <div className="rounded-md border border-red-200 bg-red-50 p-4 text-red-700">
-          {error}
-        </div>
+        <Alert type="error">{error}</Alert>
       )}
+      {loading && <LoadingMessage>Loading dashboard...</LoadingMessage>}
 
       {dashboard && (
         <section className="space-y-4">
@@ -81,7 +80,7 @@ export function DashboardPage() {
           </div>
 
           {dashboard.courses.length === 0 ? (
-            <p className="text-slate-600">This student has no enrollments.</p>
+            <Alert>This student has no enrollments.</Alert>
           ) : (
             <div className="grid gap-4">
               {dashboard.courses.map((course) => (

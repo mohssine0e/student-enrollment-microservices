@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getCourses } from '../api/client'
+import { Alert } from '../components/Alert'
+import { LoadingMessage } from '../components/LoadingMessage'
 
 export function CourseListPage() {
   const [courses, setCourses] = useState([])
@@ -29,21 +31,17 @@ export function CourseListPage() {
   }, [])
 
   if (status === 'loading') {
-    return <p className="text-slate-600">Loading courses...</p>
+    return <LoadingMessage>Loading courses...</LoadingMessage>
   }
 
   if (status === 'error') {
-    return (
-      <div className="rounded-md border border-red-200 bg-red-50 p-4 text-red-700">
-        {error}
-      </div>
-    )
+    return <Alert type="error">{error}</Alert>
   }
 
   return (
     <div className="space-y-4">
       {courses.length === 0 ? (
-        <p className="text-slate-600">No courses are available yet.</p>
+        <Alert>No courses are available yet.</Alert>
       ) : (
         <div className="grid gap-4 md:grid-cols-2">
           {courses.map((course) => (
