@@ -66,3 +66,17 @@ Local credentials are placeholders in `.env.example`; production credentials sho
 | Student Database | `3307` host -> `3306` container | MySQL |
 | Course Database | `3308` host -> `3306` container | MySQL |
 | Enrollment Database | `3309` host -> `3306` container | MySQL |
+
+## Technologies
+
+| Technology | Version / Use |
+| --- | --- |
+| Java | `21` project target |
+| Spring Boot | `3.3.6` |
+| Spring Cloud | `2023.0.4` for API Gateway |
+| Maven | `3.9.16` locally verified |
+| MySQL | `8.4` Docker image |
+| Springdoc OpenAPI | `2.6.0` |
+| Docker Compose | `5.1.4` locally verified |
+| Spring modules | Web, Data JPA, Validation, WebFlux WebClient, Cloud Gateway |
+
