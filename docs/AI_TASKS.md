@@ -189,7 +189,7 @@ git push
 - [x] 9.2 Configure route `/students/**` to `student-service`.
 - [x] 9.3 Configure route `/courses/**` to `course-service`.
 - [x] 9.4 Configure route `/enrollments/**` to `enrollment-service`.
-- [ ] 9.5 Verify student route through gateway.
+- [x] 9.5 Verify student route through gateway.
 - [ ] 9.6 Verify course route through gateway.
 - [ ] 9.7 Verify enrollment route through gateway.
 - [ ] 9.8 Commit and push API Gateway.
