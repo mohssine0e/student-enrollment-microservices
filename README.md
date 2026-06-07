@@ -10,6 +10,7 @@ The system is built around four services:
 - `course-service`
 - `enrollment-service`
 - `api-gateway`
+- `frontend`
 
 Students are identified by CNIE for enrollment. The Enrollment Service validates students and courses through WebClient calls, enforces a maximum of three students per course, supports cancellation only within 24 hours, and exposes a dashboard response with course titles and `canCancel` values.
 
@@ -42,6 +43,7 @@ The Enrollment database stores only enrollment identity and references: `id`, `s
 | `course-service` | Manages the course catalog and exposes CRUD endpoints for course data. | `8082` |
 | `enrollment-service` | Creates enrollments by CNIE and course id, enforces capacity and cancellation rules, and builds dashboard responses by calling other services with WebClient. | `8083` |
 | `api-gateway` | Provides the single entry point and routes `/students/**`, `/courses/**`, and `/enrollments/**` to their services. | `8080` |
+| `frontend` | React UI for courses, enrollment, and dashboard views. Calls the API Gateway only. | `5173` |
 
 ## Databases
 
@@ -63,6 +65,7 @@ Local credentials are placeholders in `.env.example`; production credentials sho
 | Student Service | `8081` | Spring Boot service |
 | Course Service | `8082` | Spring Boot service |
 | Enrollment Service | `8083` | Spring Boot service |
+| Frontend | `5173` | Vite React app |
 | Student Database | `3307` host -> `3306` container | MySQL |
 | Course Database | `3308` host -> `3306` container | MySQL |
 | Enrollment Database | `3309` host -> `3306` container | MySQL |
@@ -78,6 +81,7 @@ Local credentials are placeholders in `.env.example`; production credentials sho
 | MySQL | `8.4` Docker image |
 | Springdoc OpenAPI | `2.6.0` |
 | Docker Compose | `5.1.4` locally verified |
+| Frontend | React, Vite, TailwindCSS |
 | Spring modules | Web, Data JPA, Validation, WebFlux WebClient, Cloud Gateway |
 
 ## Running Instructions
@@ -138,6 +142,20 @@ mvn -f api-gateway/pom.xml spring-boot:run
 ```
 
 The Docker Compose file also contains build-context placeholders for service containers. Dockerfiles are not included in this project, so the verified workflow runs databases through Docker and services through Maven.
+
+Run only the frontend:
+
+```bash
+cd frontend
+npm install
+VITE_API_BASE_URL=http://localhost:8080 npm run dev
+```
+
+Frontend URL:
+
+- `http://localhost:5173`
+
+The frontend must be used with the API Gateway running on `http://localhost:8080`.
 
 ## API Documentation
 
