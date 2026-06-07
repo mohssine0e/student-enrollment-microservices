@@ -157,6 +157,21 @@ Frontend URL:
 
 The frontend must be used with the API Gateway running on `http://localhost:8080`.
 
+## API Endpoints
+
+Gateway base URL: `http://localhost:8080`
+
+| Feature | Method | Path |
+| --- | --- | --- |
+| List students | `GET` | `/students` |
+| Create student | `POST` | `/students` |
+| Get student by CNIE | `GET` | `/students/cnie/{cnie}` |
+| List courses | `GET` | `/courses` |
+| Create course | `POST` | `/courses` |
+| Enroll student | `POST` | `/enrollments` |
+| Cancel enrollment | `DELETE` | `/enrollments/{id}` |
+| Student dashboard | `GET` | `/enrollments/dashboard/{cnie}` |
+
 ## API Documentation
 
 Swagger/OpenAPI is enabled for the three backend services.
@@ -185,6 +200,25 @@ Before starting work:
 6. Commit and push the change.
 
 If work is interrupted, resume from the first unchecked task.
+
+## Academic Documentation
+
+- Project explanation: [`docs/PROJECT_EXPLANATION.md`](docs/PROJECT_EXPLANATION.md)
+- Professor defense guide: [`docs/PROFESSOR_DEFENSE_GUIDE.md`](docs/PROFESSOR_DEFENSE_GUIDE.md)
+- Frontend explanation: [`docs/FRONTEND_EXPLANATION.md`](docs/FRONTEND_EXPLANATION.md)
+- Backend task tracker: [`docs/AI_TASKS.md`](docs/AI_TASKS.md)
+- Frontend task tracker: [`docs/FRONTEND_TASKS.md`](docs/FRONTEND_TASKS.md)
+
+## Final Project Summary
+
+- Architecture: microservices with Student, Course, and Enrollment services behind an API Gateway.
+- Backend: Spring Boot services with controller, service, repository, DTO, validation, and exception layers.
+- Frontend: React/Vite/Tailwind app with Course Listing, Enrollment, and Dashboard pages.
+- Databases: three separated MySQL databases: `student_db`, `course_db`, and `enrollment_db`.
+- Enrollment storage rule: Enrollment stores only `id`, `studentId`, `courseId`, and `enrolledAt`.
+- Scripts: `scripts/start-all.sh` starts databases, backend services, gateway, and frontend; `scripts/stop-all.sh` stops them.
+- Swagger: each backend service exposes Swagger UI and `/v3/api-docs`.
+- Main limitation: application Dockerfiles, authentication, migrations, service discovery, and CI are not included.
 
 ## Known Limitations
 

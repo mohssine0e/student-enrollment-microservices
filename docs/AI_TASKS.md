@@ -260,6 +260,6 @@ Local database engine: MySQL 8.4 LTS.
 - [x] 14.4 Add professor defense guide.
 - [x] 14.5 Verify frontend existence and create frontend task tracker.
 - [x] 14.6 Complete frontend implementation and documentation.
-- [ ] 14.7 Update final README instructions and summary.
+- [x] 14.7 Update final README instructions and summary.
 - [ ] 14.8 Verify full project startup workflow.
 - [ ] 14.9 Commit and push post-backend additions.
