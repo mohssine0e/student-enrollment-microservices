@@ -230,7 +230,7 @@ Local database engine: MySQL 8.4 LTS.
 - [x] 12.4 Start Enrollment Service.
 - [x] 12.5 Start API Gateway.
 - [x] 12.6 Create test student.
-- [ ] 12.7 Create test course.
+- [x] 12.7 Create test course.
 - [ ] 12.8 Enroll student by CNIE.
 - [ ] 12.9 Verify maximum 3 students per course.
 - [ ] 12.10 Verify dashboard by CNIE.
