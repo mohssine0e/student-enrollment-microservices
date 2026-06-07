@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Layout } from './components/Layout'
 import { CourseListPage } from './pages/CourseListPage'
+import { EnrollmentPage } from './pages/EnrollmentPage'
 import './App.css'
 
 const routes = [
   { path: 'courses', label: 'Courses', title: 'Course Listing', component: CourseListPage },
-  { path: 'enroll', label: 'Enroll', title: 'Student Enrollment' },
+  { path: 'enroll', label: 'Enroll', title: 'Student Enrollment', component: EnrollmentPage },
   { path: 'dashboard', label: 'Dashboard', title: 'Student Dashboard' },
 ]
 
