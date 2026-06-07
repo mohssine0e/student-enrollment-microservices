@@ -185,7 +185,7 @@ git push
 
 ## Phase 9 - API Gateway
 
-- [ ] 9.1 Configure gateway port `8080`.
+- [x] 9.1 Configure gateway port `8080`.
 - [ ] 9.2 Configure route `/students/**` to `student-service`.
 - [ ] 9.3 Configure route `/courses/**` to `course-service`.
 - [ ] 9.4 Configure route `/enrollments/**` to `enrollment-service`.
