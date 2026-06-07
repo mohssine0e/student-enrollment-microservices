@@ -33,3 +33,12 @@ API Gateway (:8080)
 ```
 
 The Enrollment database stores only enrollment identity and references: `id`, `studentId`, `courseId`, and `enrolledAt`. Student names, CNIE values, and course titles are retrieved from their owning services when needed.
+
+## Services
+
+| Service | Responsibility | Port |
+| --- | --- | --- |
+| `student-service` | Manages student records, validates unique CNIE values, and exposes lookup by id or CNIE. | `8081` |
+| `course-service` | Manages the course catalog and exposes CRUD endpoints for course data. | `8082` |
+| `enrollment-service` | Creates enrollments by CNIE and course id, enforces capacity and cancellation rules, and builds dashboard responses by calling other services with WebClient. | `8083` |
+| `api-gateway` | Provides the single entry point and routes `/students/**`, `/courses/**`, and `/enrollments/**` to their services. | `8080` |
