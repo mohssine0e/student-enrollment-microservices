@@ -249,5 +249,5 @@ Local database engine: MySQL 8.4 LTS.
 - [x] 13.7 Add final running instructions.
 - [x] 13.8 Add final API documentation links.
 - [x] 13.9 Add known limitations.
-- [ ] 13.10 Add future improvements.
+- [x] 13.10 Add future improvements.
 - [ ] 13.11 Commit and push README completion.

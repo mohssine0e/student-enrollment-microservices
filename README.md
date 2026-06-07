@@ -148,3 +148,19 @@ OpenAPI JSON:
 - Database schema creation is handled with Hibernate `ddl-auto=update` for local verification, not a migration tool.
 - Cross-service calls are synchronous WebClient requests without circuit breakers or retries.
 - End-to-end verification is manual and documented through `docs/AI_TASKS.md`, not automated as a CI pipeline.
+
+## Future Improvements
+
+Potential improvements after the core project is complete:
+
+- Add Dockerfiles for each Spring Boot service and run the full stack from Docker Compose.
+- Service discovery
+- Centralized configuration
+- Resilience patterns with circuit breakers and retries
+- Authentication and authorization
+- Database migrations with Flyway or Liquibase
+- Centralized logging
+- Distributed tracing
+- Automated integration tests
+- CI/CD pipeline
+- Frontend dashboard for students and administrators
