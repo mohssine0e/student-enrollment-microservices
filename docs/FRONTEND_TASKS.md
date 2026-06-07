@@ -31,7 +31,7 @@ This file is the frontend source of truth. If frontend work is interrupted, resu
 
 - [x] 2.1 Configure API Gateway base URL.
 - [x] 2.2 Create frontend API client functions.
-- [ ] 2.3 Create application routing.
+- [x] 2.3 Create application routing.
 - [ ] 2.4 Create shared layout and navigation.
 
 ## Phase 3 - Pages
