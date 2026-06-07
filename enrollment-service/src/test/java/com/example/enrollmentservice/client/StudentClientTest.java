@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.example.enrollmentservice.dto.StudentDTO;
+import com.example.enrollmentservice.exception.StudentNotFoundException;
 import com.example.enrollmentservice.exception.StudentServiceUnavailableException;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
@@ -45,6 +46,11 @@ class StudentClientTest {
             exchange.sendResponseHeaders(503, -1);
             exchange.close();
         });
+        server.createContext("/students/cnie/MISSING", exchange -> {
+            requestedPath = exchange.getRequestURI().getPath();
+            exchange.sendResponseHeaders(404, -1);
+            exchange.close();
+        });
         server.start();
     }
 
@@ -75,6 +81,16 @@ class StudentClientTest {
                 .isInstanceOf(StudentServiceUnavailableException.class)
                 .hasMessage("Student Service is unavailable");
         assertThat(requestedPath).isEqualTo("/students/cnie/SERVICE_DOWN");
+    }
+
+    @Test
+    void findByCnieThrowsWhenStudentDoesNotExist() {
+        StudentClient client = new StudentClient(WebClient.builder(), baseUrl());
+
+        assertThatThrownBy(() -> client.findByCnie("MISSING"))
+                .isInstanceOf(StudentNotFoundException.class)
+                .hasMessage("Student not found with CNIE: MISSING");
+        assertThat(requestedPath).isEqualTo("/students/cnie/MISSING");
     }
 
     private String baseUrl() {

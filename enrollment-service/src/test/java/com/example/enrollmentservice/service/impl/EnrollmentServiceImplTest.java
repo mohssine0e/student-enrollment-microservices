@@ -3,6 +3,7 @@ package com.example.enrollmentservice.service.impl;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -14,6 +15,7 @@ import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
 import com.example.enrollmentservice.dto.StudentDTO;
 import com.example.enrollmentservice.entity.Enrollment;
 import com.example.enrollmentservice.exception.CourseFullException;
+import com.example.enrollmentservice.exception.StudentNotFoundException;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
@@ -83,5 +85,18 @@ class EnrollmentServiceImplTest {
         verify(enrollmentRepository).save(enrollmentCaptor.capture());
         assertThat(enrollmentCaptor.getValue().getStudentId()).isEqualTo(10L);
         assertThat(enrollmentCaptor.getValue().getCourseId()).isEqualTo(20L);
+    }
+
+    @Test
+    void createEnrollmentStopsWhenStudentDoesNotExist() {
+        EnrollmentRequestDTO request = new EnrollmentRequestDTO("MISSING", 20L);
+        when(studentClient.findByCnie("MISSING"))
+                .thenThrow(new StudentNotFoundException("Student not found with CNIE: MISSING"));
+
+        assertThatThrownBy(() -> enrollmentService.createEnrollment(request))
+                .isInstanceOf(StudentNotFoundException.class)
+                .hasMessage("Student not found with CNIE: MISSING");
+        verify(courseClient, never()).findById(any());
+        verify(enrollmentRepository, never()).save(any());
     }
 }

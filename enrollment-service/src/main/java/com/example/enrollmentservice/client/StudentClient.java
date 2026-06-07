@@ -1,8 +1,10 @@
 package com.example.enrollmentservice.client;
 
 import com.example.enrollmentservice.dto.StudentDTO;
+import com.example.enrollmentservice.exception.StudentNotFoundException;
 import com.example.enrollmentservice.exception.StudentServiceUnavailableException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -29,6 +31,8 @@ public class StudentClient implements StudentServiceClient {
             return webClient.get()
                     .uri("/students/cnie/{cnie}", cnie)
                     .retrieve()
+                    .onStatus(HttpStatus.NOT_FOUND::equals, response -> response.releaseBody()
+                            .then(Mono.error(new StudentNotFoundException("Student not found with CNIE: " + cnie))))
                     .onStatus(HttpStatusCode::is5xxServerError, response -> response.releaseBody()
                             .then(Mono.error(new StudentServiceUnavailableException("Student Service is unavailable"))))
                     .bodyToMono(StudentDTO.class)
