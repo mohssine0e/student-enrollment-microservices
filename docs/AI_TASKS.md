@@ -214,7 +214,7 @@ Local database engine: MySQL 8.4 LTS.
 - [x] 11.1 Choose database engine for local development.
 - [x] 11.2 Define Student Service database container.
 - [x] 11.3 Define Course Service database container.
-- [ ] 11.4 Define Enrollment Service database container.
+- [x] 11.4 Define Enrollment Service database container.
 - [ ] 11.5 Define Docker network.
 - [ ] 11.6 Define named volumes.
 - [ ] 11.7 Add environment variable placeholders.

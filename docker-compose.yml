@@ -26,3 +26,14 @@ services:
       MYSQL_ROOT_PASSWORD: ${COURSE_DB_ROOT_PASSWORD:-root_password}
     ports:
       - "${COURSE_DB_PORT:-3308}:3306"
+
+  enrollment-db:
+    image: ${ENROLLMENT_DB_IMAGE:-mysql:8.4}
+    container_name: enrollment-db
+    environment:
+      MYSQL_DATABASE: ${ENROLLMENT_DB_NAME:-enrollment_db}
+      MYSQL_USER: ${ENROLLMENT_DB_USERNAME:-enrollment_user}
+      MYSQL_PASSWORD: ${ENROLLMENT_DB_PASSWORD:-enrollment_password}
+      MYSQL_ROOT_PASSWORD: ${ENROLLMENT_DB_ROOT_PASSWORD:-root_password}
+    ports:
+      - "${ENROLLMENT_DB_PORT:-3309}:3306"
