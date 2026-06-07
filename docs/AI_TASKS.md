@@ -181,7 +181,7 @@ git push
 - [x] 8.5 Create dashboard response mapping.
 - [x] 8.6 Create dashboard endpoint.
 - [x] 8.7 Verify dashboard response content.
-- [ ] 8.8 Commit and push Dashboard feature.
+- [x] 8.8 Commit and push Dashboard feature.
 
 ## Phase 9 - API Gateway
 
