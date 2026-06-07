@@ -80,3 +80,48 @@ Local credentials are placeholders in `.env.example`; production credentials sho
 | Docker Compose | `5.1.4` locally verified |
 | Spring modules | Web, Data JPA, Validation, WebFlux WebClient, Cloud Gateway |
 
+## Running Instructions
+
+Start the local MySQL databases:
+
+```bash
+docker compose --env-file .env.example up -d student-db course-db enrollment-db
+```
+
+Run the services in separate terminals:
+
+```bash
+STUDENT_DB_URL=jdbc:mysql://localhost:3307/student_db \
+STUDENT_DB_USERNAME=student_user \
+STUDENT_DB_PASSWORD=student_password \
+STUDENT_JPA_DDL_AUTO=update \
+mvn -f student-service/pom.xml spring-boot:run
+```
+
+```bash
+COURSE_DB_URL=jdbc:mysql://localhost:3308/course_db \
+COURSE_DB_USERNAME=course_user \
+COURSE_DB_PASSWORD=course_password \
+COURSE_JPA_DDL_AUTO=update \
+mvn -f course-service/pom.xml spring-boot:run
+```
+
+```bash
+ENROLLMENT_DB_URL=jdbc:mysql://localhost:3309/enrollment_db \
+ENROLLMENT_DB_USERNAME=enrollment_user \
+ENROLLMENT_DB_PASSWORD=enrollment_password \
+ENROLLMENT_JPA_DDL_AUTO=update \
+STUDENT_SERVICE_BASE_URL=http://localhost:8081 \
+COURSE_SERVICE_BASE_URL=http://localhost:8082 \
+mvn -f enrollment-service/pom.xml spring-boot:run
+```
+
+```bash
+STUDENT_SERVICE_URL=http://localhost:8081 \
+COURSE_SERVICE_URL=http://localhost:8082 \
+ENROLLMENT_SERVICE_URL=http://localhost:8083 \
+mvn -f api-gateway/pom.xml spring-boot:run
+```
+
+The Docker Compose file also contains build-context placeholders for service containers. Dockerfiles are not included in this project, so the verified workflow runs databases through Docker and services through Maven.
+
