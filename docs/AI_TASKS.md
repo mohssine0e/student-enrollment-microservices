@@ -192,7 +192,7 @@ git push
 - [x] 9.5 Verify student route through gateway.
 - [x] 9.6 Verify course route through gateway.
 - [x] 9.7 Verify enrollment route through gateway.
-- [ ] 9.8 Commit and push API Gateway.
+- [x] 9.8 Commit and push API Gateway.
 
 ## Phase 10 - Swagger And API Documentation
 
