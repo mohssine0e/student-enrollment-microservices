@@ -243,7 +243,7 @@ Local database engine: MySQL 8.4 LTS.
 - [x] 13.1 Update project overview with final implementation details.
 - [x] 13.2 Add final architecture diagram.
 - [x] 13.3 Add final service descriptions.
-- [ ] 13.4 Add final database names.
+- [x] 13.4 Add final database names.
 - [ ] 13.5 Add final port table.
 - [ ] 13.6 Add final technology versions.
 - [ ] 13.7 Add final running instructions.

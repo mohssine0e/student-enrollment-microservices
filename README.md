@@ -42,3 +42,15 @@ The Enrollment database stores only enrollment identity and references: `id`, `s
 | `course-service` | Manages the course catalog and exposes CRUD endpoints for course data. | `8082` |
 | `enrollment-service` | Creates enrollments by CNIE and course id, enforces capacity and cancellation rules, and builds dashboard responses by calling other services with WebClient. | `8083` |
 | `api-gateway` | Provides the single entry point and routes `/students/**`, `/courses/**`, and `/enrollments/**` to their services. | `8080` |
+
+## Databases
+
+Each data-owning service uses its own MySQL database.
+
+| Service | Database | Host Port | Notes |
+| --- | --- | --- | --- |
+| `student-service` | `student_db` | `3307` | Owns student profile and CNIE data. |
+| `course-service` | `course_db` | `3308` | Owns course titles and descriptions. |
+| `enrollment-service` | `enrollment_db` | `3309` | Stores only `id`, `studentId`, `courseId`, and `enrolledAt`. |
+
+Local credentials are placeholders in `.env.example`; production credentials should not be committed.
