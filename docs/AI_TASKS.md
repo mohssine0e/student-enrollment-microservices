@@ -203,7 +203,7 @@ git push
 - [x] 10.5 Document Course Service endpoints.
 - [x] 10.6 Document Enrollment Service endpoints.
 - [x] 10.7 Verify Swagger UI for Student Service.
-- [ ] 10.8 Verify Swagger UI for Course Service.
+- [x] 10.8 Verify Swagger UI for Course Service.
 - [ ] 10.9 Verify Swagger UI for Enrollment Service.
 - [ ] 10.10 Commit and push Swagger documentation.
 
