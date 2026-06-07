@@ -23,7 +23,7 @@ This file is the frontend source of truth. If frontend work is interrupted, resu
 ## Phase 1 - React Project Setup
 
 - [x] 1.1 Scaffold Vite React frontend.
-- [ ] 1.2 Configure TailwindCSS.
+- [x] 1.2 Configure TailwindCSS.
 - [ ] 1.3 Add frontend `.gitignore` coverage.
 - [ ] 1.4 Verify frontend dependency installation.
 
