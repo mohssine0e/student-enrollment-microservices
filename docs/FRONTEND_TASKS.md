@@ -29,7 +29,7 @@ This file is the frontend source of truth. If frontend work is interrupted, resu
 
 ## Phase 2 - API And Routing Foundation
 
-- [ ] 2.1 Configure API Gateway base URL.
+- [x] 2.1 Configure API Gateway base URL.
 - [ ] 2.2 Create frontend API client functions.
 - [ ] 2.3 Create application routing.
 - [ ] 2.4 Create shared layout and navigation.
