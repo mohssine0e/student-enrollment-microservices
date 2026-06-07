@@ -1,0 +1,17 @@
+# Docker Compose planning file.
+# Final service containers will be completed later.
+# Do not store production credentials in this file.
+
+name: student-enrollment-system
+
+services:
+  student-db:
+    image: ${STUDENT_DB_IMAGE:-mysql:8.4}
+    container_name: student-db
+    environment:
+      MYSQL_DATABASE: ${STUDENT_DB_NAME:-student_db}
+      MYSQL_USER: ${STUDENT_DB_USERNAME:-student_user}
+      MYSQL_PASSWORD: ${STUDENT_DB_PASSWORD:-student_password}
+      MYSQL_ROOT_PASSWORD: ${STUDENT_DB_ROOT_PASSWORD:-root_password}
+    ports:
+      - "${STUDENT_DB_PORT:-3307}:3306"

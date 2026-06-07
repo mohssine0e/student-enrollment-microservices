@@ -212,7 +212,7 @@ git push
 Local database engine: MySQL 8.4 LTS.
 
 - [x] 11.1 Choose database engine for local development.
-- [ ] 11.2 Define Student Service database container.
+- [x] 11.2 Define Student Service database container.
 - [ ] 11.3 Define Course Service database container.
 - [ ] 11.4 Define Enrollment Service database container.
 - [ ] 11.5 Define Docker network.
