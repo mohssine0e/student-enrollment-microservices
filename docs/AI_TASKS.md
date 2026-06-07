@@ -255,7 +255,7 @@ Local database engine: MySQL 8.4 LTS.
 ## Phase 14 - Post-Backend Academic And Frontend Additions
 
 - [x] 14.1 Add post-backend task tracking.
-- [ ] 14.2 Add Arch Linux startup and shutdown scripts.
+- [x] 14.2 Add Arch Linux startup and shutdown scripts.
 - [ ] 14.3 Add academic project explanation.
 - [ ] 14.4 Add professor defense guide.
 - [ ] 14.5 Verify frontend existence and create frontend task tracker.

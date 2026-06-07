@@ -1,0 +1,46 @@
+# Java and Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+application-local.properties
+application-local.yml
+application-dev.properties
+application-dev.yml
+
+# Docker
+docker-compose.override.yml
+
+# Build and runtime artifacts
+logs/
+tmp/
+*.pid
+
+# Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.env.local
+
+# Tool caches
+.mvn/wrapper/maven-wrapper.jar
