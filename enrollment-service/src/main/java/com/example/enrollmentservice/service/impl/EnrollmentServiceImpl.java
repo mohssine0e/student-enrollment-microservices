@@ -9,6 +9,7 @@ import com.example.enrollmentservice.dto.StudentDTO;
 import com.example.enrollmentservice.entity.Enrollment;
 import com.example.enrollmentservice.exception.CancellationPeriodExpiredException;
 import com.example.enrollmentservice.exception.CourseFullException;
+import com.example.enrollmentservice.exception.EnrollmentNotFoundException;
 import com.example.enrollmentservice.mapper.EnrollmentMapper;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import com.example.enrollmentservice.service.EnrollmentService;
@@ -74,6 +75,6 @@ public class EnrollmentServiceImpl implements EnrollmentService {
     @Transactional(readOnly = true)
     public Enrollment findEnrollmentForDeletion(Long enrollmentId) {
         return enrollmentRepository.findById(enrollmentId)
-                .orElseThrow(() -> new IllegalArgumentException("Enrollment not found with id: " + enrollmentId));
+                .orElseThrow(() -> new EnrollmentNotFoundException("Enrollment not found with id: " + enrollmentId));
     }
 }

@@ -17,6 +17,7 @@ import com.example.enrollmentservice.entity.Enrollment;
 import com.example.enrollmentservice.exception.CancellationPeriodExpiredException;
 import com.example.enrollmentservice.exception.CourseFullException;
 import com.example.enrollmentservice.exception.CourseNotFoundException;
+import com.example.enrollmentservice.exception.EnrollmentNotFoundException;
 import com.example.enrollmentservice.exception.StudentNotFoundException;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
 import java.time.Clock;
@@ -144,7 +145,7 @@ class EnrollmentServiceImplTest {
         when(enrollmentRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> enrollmentService.findEnrollmentForDeletion(1L))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(EnrollmentNotFoundException.class)
                 .hasMessage("Enrollment not found with id: 1");
     }
 
