@@ -14,6 +14,7 @@ import com.example.enrollmentservice.dto.EnrollmentRequestDTO;
 import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
 import com.example.enrollmentservice.dto.StudentDTO;
 import com.example.enrollmentservice.entity.Enrollment;
+import com.example.enrollmentservice.exception.CancellationPeriodExpiredException;
 import com.example.enrollmentservice.exception.CourseFullException;
 import com.example.enrollmentservice.exception.CourseNotFoundException;
 import com.example.enrollmentservice.exception.StudentNotFoundException;
@@ -165,7 +166,7 @@ class EnrollmentServiceImplTest {
         when(enrollmentRepository.findById(1L)).thenReturn(Optional.of(enrollment));
 
         assertThatThrownBy(() -> enrollmentService.cancelEnrollment(1L))
-                .isInstanceOf(IllegalStateException.class)
+                .isInstanceOf(CancellationPeriodExpiredException.class)
                 .hasMessage("Enrollment cancellation period has expired");
         verify(enrollmentRepository, never()).delete(any());
     }

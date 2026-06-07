@@ -7,6 +7,7 @@ import com.example.enrollmentservice.dto.EnrollmentRequestDTO;
 import com.example.enrollmentservice.dto.EnrollmentResponseDTO;
 import com.example.enrollmentservice.dto.StudentDTO;
 import com.example.enrollmentservice.entity.Enrollment;
+import com.example.enrollmentservice.exception.CancellationPeriodExpiredException;
 import com.example.enrollmentservice.exception.CourseFullException;
 import com.example.enrollmentservice.mapper.EnrollmentMapper;
 import com.example.enrollmentservice.repository.EnrollmentRepository;
@@ -55,7 +56,7 @@ public class EnrollmentServiceImpl implements EnrollmentService {
         Enrollment enrollment = findEnrollmentForDeletion(enrollmentId);
         LocalDateTime cancellationDeadline = enrollment.getEnrolledAt().plusHours(24);
         if (LocalDateTime.now(clock).isAfter(cancellationDeadline)) {
-            throw new IllegalStateException("Enrollment cancellation period has expired");
+            throw new CancellationPeriodExpiredException("Enrollment cancellation period has expired");
         }
         enrollmentRepository.delete(enrollment);
     }
