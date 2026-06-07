@@ -196,7 +196,7 @@ git push
 
 ## Phase 10 - Swagger And API Documentation
 
-- [ ] 10.1 Add Swagger/OpenAPI dependency to `student-service`.
+- [x] 10.1 Add Swagger/OpenAPI dependency to `student-service`.
 - [ ] 10.2 Add Swagger/OpenAPI dependency to `course-service`.
 - [ ] 10.3 Add Swagger/OpenAPI dependency to `enrollment-service`.
 - [ ] 10.4 Document Student Service endpoints.
