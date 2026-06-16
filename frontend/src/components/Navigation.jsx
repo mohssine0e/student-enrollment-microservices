@@ -1,14 +1,14 @@
 export function Navigation({ routes, activeRoute }) {
   return (
-    <nav className="flex flex-wrap gap-2" aria-label="Primary navigation">
+    <nav className="flex items-center space-x-3" aria-label="Primary navigation">
       {routes.map((route) => (
         <a
           key={route.path}
           href={`#/${route.path}`}
-          className={`rounded-md px-4 py-2 text-sm font-medium transition ${
+          className={`relative rounded-full px-5 py-2.5 text-base font-semibold transition-all duration-200 ${
             activeRoute === route.path
-              ? 'bg-slate-900 text-white'
-              : 'bg-white text-slate-700 ring-1 ring-slate-200 hover:bg-slate-50'
+              ? 'bg-indigo-600 text-white shadow-md shadow-indigo-900/50 ring-1 ring-indigo-500'
+              : 'text-slate-300 hover:bg-slate-800/80 hover:text-white ring-1 ring-transparent hover:ring-slate-700'
           }`}
         >
           {route.label}

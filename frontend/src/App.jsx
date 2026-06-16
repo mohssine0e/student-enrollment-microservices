@@ -3,17 +3,19 @@ import { Layout } from './components/Layout'
 import { CourseListPage } from './pages/CourseListPage'
 import { DashboardPage } from './pages/DashboardPage'
 import { EnrollmentPage } from './pages/EnrollmentPage'
+import { StudentListPage } from './pages/StudentListPage'
 import './App.css'
 
 const routes = [
+  { path: 'dashboard', label: 'Dashboard', title: 'System Dashboard', component: DashboardPage },
+  { path: 'students', label: 'Students', title: 'Student Directory', component: StudentListPage },
   { path: 'courses', label: 'Courses', title: 'Course Listing', component: CourseListPage },
   { path: 'enroll', label: 'Enroll', title: 'Student Enrollment', component: EnrollmentPage },
-  { path: 'dashboard', label: 'Dashboard', title: 'Student Dashboard', component: DashboardPage },
 ]
 
 function getRouteFromHash() {
   const route = window.location.hash.replace('#/', '')
-  return routes.some((item) => item.path === route) ? route : 'courses'
+  return routes.some((item) => item.path === route) ? route : 'dashboard'
 }
 
 function App() {
@@ -24,7 +26,7 @@ function App() {
     window.addEventListener('hashchange', handleHashChange)
 
     if (!window.location.hash) {
-      window.location.hash = '/courses'
+      window.location.hash = '/dashboard'
     }
 
     return () => window.removeEventListener('hashchange', handleHashChange)

@@ -1,22 +1,61 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: 'Outfit', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
 html {
-  color-scheme: light;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  font-size: 112%; /* Increased base font size for better readability */
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #f6f7fb;
-  color: #172033;
-  font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  /* Premium dark mesh gradient background */
+  background-color: #0f172a; /* slate-900 */
+  background-image: 
+    radial-gradient(at 40% 20%, hsla(258, 60%, 20%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, hsla(199, 60%, 20%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, hsla(335, 60%, 20%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 80% 50%, hsla(280, 60%, 20%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(22, 60%, 20%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 80% 100%, hsla(242, 60%, 20%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(343, 60%, 20%, 0.5) 0px, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc; /* slate-50 */
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
 }
 
 button,
 input,
+select,
 textarea {
   font: inherit;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glassmorphism utility for dark mode */
+.glass {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(30, 41, 59, 0.85); /* slate-800 */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }

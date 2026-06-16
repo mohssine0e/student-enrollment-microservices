@@ -28,6 +28,23 @@ export function getCourses() {
   return request('/courses')
 }
 
+export function createCourse(payload) {
+  return request('/courses', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+}
+
+export function deleteCourse(id) {
+  return request(`/courses/${id}`, {
+    method: 'DELETE',
+  })
+}
+
+export function getStudents() {
+  return request('/students')
+}
+
 export function createEnrollment(payload) {
   return request('/enrollments', {
     method: 'POST',
@@ -41,6 +58,26 @@ export function getDashboard(cnie) {
 
 export function cancelEnrollment(enrollmentId) {
   return request(`/enrollments/${enrollmentId}`, {
+    method: 'DELETE',
+  })
+}
+
+export function createStudent(payload) {
+  return request('/students', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+}
+
+export function updateStudent(id, payload) {
+  return request(`/students/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(payload),
+  })
+}
+
+export function deleteStudent(id) {
+  return request(`/students/${id}`, {
     method: 'DELETE',
   })
 }
