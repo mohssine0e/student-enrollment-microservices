@@ -89,7 +89,7 @@ Local credentials are placeholders in `.env.example`; production credentials sho
 On Arch Linux, the easiest workflow is to use the project scripts:
 
 ```bash
-scripts/start-all.sh
+scripts/start_all.sh
 ```
 
 This starts the MySQL containers, Student Service, Course Service, Enrollment Service, API Gateway, and the frontend when `frontend/package.json` exists. Logs are written to `logs/`, and process IDs are stored in `tmp/pids/`.
@@ -97,7 +97,7 @@ This starts the MySQL containers, Student Service, Course Service, Enrollment Se
 Stop the full project with:
 
 ```bash
-scripts/stop-all.sh
+scripts/stop_all.sh
 ```
 
 Start the local MySQL databases:
